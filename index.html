@@ -1,0 +1,3519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dynamic Reward Economics Calculator</title>
+
+<meta property="og:title" content="LoyaltyPlay Reward Economics Calculator">
+<meta property="og:description" content="Model Rev Share and Rate Card deal economics for LoyaltyPlay by Mistplay.">
+<meta property="og:image" content="https://mistplay-lp-calculator.netlify.app/loyaltyplay-og-image.png">
+<meta property="og:url" content="https://mistplay-lp-calculator.netlify.app/">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="LoyaltyPlay Reward Economics Calculator">
+<meta name="twitter:description" content="Model Rev Share and Rate Card deal economics for LoyaltyPlay by Mistplay.">
+<meta name="twitter:image" content="https://mistplay-lp-calculator.netlify.app/loyaltyplay-og-image.png">
+
+<link rel="icon" type="image/png" sizes="32x32" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAEtElEQVR4nMWXXahUVRTHf2vvc2bmnrmfaUEWGRaFyi3DiDLsg0TpgxACIzCohyB6qSzJlx56KjLrsbdeJCJ8CCsK8drHixEphj6UFKggaHXj3rnXuXdmztl79bDPzJ3xnqveRO6CDTPnzNr//3+ttdfaI9Vl65QlNLOU4FdNQPK1JASsAadhRVchY9GuNpc8NQtJDEkEtdned9eEgBUwAlNNcB62r/aMbU059EyL59c6Mh/eGVkcEbncKTAS8jzVChs/udKz4x7HhhVKw4MYpVKCw+eED49EfPWnwSsMlkEBf5kztiCBNvCFNGzyyArljXWOTbd4vMB0BsYoGFCBwUr4fvCMYc/PEd+fsRhRBsrBfyEihQQEaDpIHay/QXn9LsfTqzyxhVomiCjWBnAExIAXBYGhPsgU9v9h2PNTxJGzlihWKhFoAYl5BARIPazsV14d9Tx7u6O/DLU0KLVGkcgAHkwAxwRwsQbnHWKFkUS5kMFnJywfHY45PSnEdj6JHgJGYCaD0RHlm8czlifKZApewrGTyIA1aKOGJAMIDiREQqxBsxmkbwAhw6nHWhhOlPFZYfMnFY6fF5K4Nx3zToFTGCnDYFn5pwkiYG3+S5+SbHuH0ugmqI/nJW8QI2hjkviOh6hsfAl8M/gIjM8KQ33KSKI4X1BrRYWRKmRA3AbO84xmmOEbqb7wMeVNr6BpHVwDfIvS/dupbNkFyTCoQ4wgBiKrZEBWAA4QFT00AiZPc8izhocIpA1wLfqe2EV00xoaYx9Q3vAi0W0PoFkDXJo3DUJ68r1kgd4wn0A7P3lsJN+ks4wBAZ2ZIF67BTdxmmjlerQxBeUqIhLAcj+5zMAojEAbTPJz3qn27h+IQVt1xLXQbBbEzvnmfiLh5GA0VyZdCnt0FnAwc8o7KkR7o9QG7CF2kfJ2/SyQgwUI5OCme801HlBQj5SqEJUg7gN8h4x0+XWELGDFBNrgHSVdqtQDgiQjpL8fID2+D3f2KFIZzLtMd+S6hCyGgBJyJ13KpV3VcQVMTGPsXRr7d6AX/qb1w3u0ju1FonKIiGhP/XQiUNCKC4swktADZlKIu6MQRejUOWb3vUz629eY/mU5gCf7dS/Uz2Nuvjdvm0F9pqEXRLZ4Gs0jYAUmmkIthev7PbWW4AArilhL49u30WYNM7AccIAGgskw7syP+L+OInEJp4q1cF1VmajDRF2wBfGeP4wkTMFbh5TX7st4btTRX1Zqre5hZAnDSPPUkM8D6Qyjoaoykwqf/hKxZ6zE6X+FuGAiFo9jgWYGaSasX+F5c0PK1jWOKIKpliBGMbYX3BNyPpSEsH9x3LJ7rMSRU/k4jq9wHLfN5Few6RZ4Jzy6yrFzY8rmOx0eZTqV0K4NKMpgohgLB05G7D5Y4ruTFmNhoKyLv5BcTEQEphqCFeWp1Y6dD6c8uMrRdAJGKZeVw6csuw+V+PKExasw2KfoJYCvmEDbrIRTNN0QKrGy7W7HW4+1wCjvHyrx+bGIRksY6AtFWTR6r4pAh4gJm9dnheWDwXW8JlQT7bxbjBUPo0tYG2CoqtRb+ed+JfOLB/9fBNqW+bn7/0KXjWtKAAo766Jtyf8d/weEeeFVVTI/lQAAAABJRU5ErkJggg==">
+<link rel="icon" type="image/png" sizes="16x16" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAACAUlEQVR4nHWTQWsTQRiGn29mNptN0lYTBS0tKGjVgzboQcSLonhQD4IHUQT/g6V46FUQquf+AkE8qwcrehFRkR70IoqKBUVPRlsbkmZ2Pg+TWNI2C8POMt88O/O97yvlWl0Z8FiJ73xgBbhBGwOw1I7flRTMAFAfwAgIsLQaIVf2BwDufzTkAYZTUCDoJgABVjpx8fSYMnUkcHLcIxauTRruvHE8+SIYgVISQQBSrtVVusc7WFWmJnPO7c4xtFi2JcQJI2mLIMqjxSK3X1je/TRYEyEytK2uLQ+7hpTnFzzVLOe3ybBjE+jiazAeauOYcoWtrU80QsrRuZSvDaHoYm9QIHWAhYYHIx2GLt0kO3sdN7qPysVbJDv38qvZBicUE1Bd1wNVwCguATWK+jbpsauY2ihmZAf4Jq4g5Eb7mmj+zwTE9oauQXuLNp5QLIjoRoAIiINcFJwgSUpn4S6rL+fQ5R9IWiIQEBdr+2QUgXYe/1wtKw11rDycge+vEONpPr6BySpsqRb44wNtvwbpk/HQdmX6eIfzB3yUUboyZlHGBx8yZucT3n4zWBuvKL0sCNDsGunMnsD0Cc+pCQ9OefbZMvu0wPx7g4hQLmi/kTZYuS1YUS4f9iBwbyGJVs4U1X4ry2Zp7IXpb0tAoZIpRiAP6ysHpLGXuuEsTvIwONL/AEyuxBjuzLQrAAAAAElFTkSuQmCC">
+<link rel="apple-touch-icon" sizes="180x180" href="data:image/png;base64,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">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,500;1,600;1,700&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0B1330;
+    --bg-2:#0F1B3D;
+    --panel:#131C41;
+    --panel-2:#182352;
+    --line:rgba(255,255,255,0.09);
+    --grid-line:rgba(255,255,255,0.07);
+    --text:#F2F3F9;
+    --text-dim:#8891B5;
+    --orange:#E8622C;
+    --amber:#F5A623;
+    --amber-dim:rgba(245,166,35,0.16);
+    --slate:#8891B5;
+    --slate-dim:rgba(136,145,181,0.16);
+    --warn:#FF6B5E;
+    --warn-dim:rgba(255,107,94,0.14);
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background-color:var(--bg);
+    background-image:
+      radial-gradient(ellipse at 50% 0%, rgba(232,98,44,0.07), transparent 60%),
+      linear-gradient(var(--grid-line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+    background-size: auto, 80px 80px, 80px 80px;
+    color:var(--text);
+    font-family:'Inter',system-ui,sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{
+    max-width:920px;
+    margin:0 auto;
+    padding:36px 20px 64px;
+  }
+  .brand-lockup{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:18px;
+    margin:0 auto 28px;
+    width:100%;
+    background:none;
+    border:none;
+    padding:6px;
+    cursor:pointer;
+    border-radius:12px;
+    transition:opacity .15s, background .15s;
+  }
+  .brand-lockup:hover{ opacity:0.85; background:rgba(255,255,255,0.03); }
+  .brand-lockup:focus-visible{ outline:2px solid var(--amber); outline-offset:2px; }
+  .brand-lockup > div{ text-align:left; }
+  .brand-lockup svg{ flex-shrink:0; width:56px; height:56px; }
+  .brand-name{
+    font-size:28px;
+    font-weight:800;
+    color:var(--text);
+    letter-spacing:-0.01em;
+  }
+  .brand-name .accent{
+    font-style:italic;
+    font-weight:600;
+    color:var(--text);
+  }
+  .brand-name sup{ font-size:12px; font-weight:600; }
+  .brand-sub{
+    display:block;
+    font-size:12px;
+    font-weight:700;
+    letter-spacing:0.16em;
+    color:var(--amber);
+    margin-top:2px;
+  }
+  .eyebrow{
+    font-size:11px;
+    font-weight:600;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--slate);
+    margin:0 0 10px;
+  }
+  h1{
+    font-family:'Inter',sans-serif;
+    font-weight:800;
+    font-size:32px;
+    letter-spacing:-0.01em;
+    margin:0 0 10px;
+    line-height:1.15;
+  }
+  .sub{
+    color:var(--text-dim);
+    font-size:14.5px;
+    max-width:560px;
+    line-height:1.55;
+    margin:0 0 26px;
+  }
+  .presets{
+    display:flex;
+    gap:8px;
+    flex-wrap:wrap;
+    margin-bottom:32px;
+  }
+  .btn{
+    font-family:'JetBrains Mono',monospace;
+    font-size:11.5px;
+    letter-spacing:0.04em;
+    text-transform:uppercase;
+    color:var(--text-dim);
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:6px;
+    padding:9px 14px;
+    cursor:pointer;
+    transition:border-color .15s, color .15s;
+  }
+  .btn:hover{ border-color:var(--amber); color:var(--amber); }
+  .btn.primary{ color:#1A0F05; background:linear-gradient(135deg, var(--orange), var(--amber)); border-color:transparent; font-weight:700; }
+  .btn.primary:hover{ color:#1A0F05; opacity:0.9; }
+  .btn.ghost{ color:var(--text-dim); }
+  .btn.small{ padding:5px 9px; font-size:10px; }
+
+  section{ margin-bottom:34px; }
+  .step-head{
+    display:flex;
+    align-items:baseline;
+    gap:10px;
+    margin-bottom:14px;
+    padding-bottom:10px;
+    border-bottom:1px solid var(--line);
+  }
+  .step-num{
+    font-family:'JetBrains Mono',monospace;
+    font-size:12px;
+    color:var(--text-dim);
+    letter-spacing:0.05em;
+  }
+  .step-title{
+    font-weight:700;
+    font-size:19px;
+    color:var(--text);
+    letter-spacing:-0.005em;
+  }
+
+  .panel{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:10px;
+    padding:20px;
+  }
+  #rateCardSplitPanel{ margin-bottom:24px; }
+  #expirationPanelCampaign{ margin-bottom:24px; }
+  .flow-connector{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-top:16px;
+  }
+  .flow-connector .fc-line{
+    flex:1;
+    height:1px;
+    background:repeating-linear-gradient(90deg, var(--amber) 0 4px, transparent 4px 9px);
+    opacity:0.55;
+  }
+  .flow-connector .fc-label{
+    font-size:11px;
+    font-weight:600;
+    letter-spacing:0.03em;
+    color:var(--amber);
+    white-space:nowrap;
+  }
+  .panel-note{
+    font-size:12.5px;
+    color:var(--text-dim);
+    line-height:1.5;
+    margin:0 0 18px;
+  }
+  .grid2{ display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+  .grid3{ display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; }
+
+  .field{ margin-bottom:4px; }
+  .field-note{
+    font-size:11px;
+    color:var(--text-dim);
+    margin-top:7px;
+    line-height:1.4;
+    font-style:italic;
+  }
+  .field label{
+    display:flex;
+    justify-content:space-between;
+    font-size:12.5px;
+    color:var(--text-dim);
+    margin-bottom:7px;
+  }
+  .field label span.val{ color:var(--amber); font-family:'JetBrains Mono',monospace; }
+  .field label span.hint{ color:var(--text-dim); font-weight:400; font-style:italic; text-transform:none; letter-spacing:normal; }
+  input[type="number"]{
+    width:100%;
+    background:var(--panel-2);
+    border:1px solid var(--line);
+    border-radius:6px;
+    color:var(--text);
+    font-family:'JetBrains Mono',monospace;
+    font-size:14px;
+    padding:9px 10px;
+  }
+  input[type="number"]:focus{ outline:none; border-color:var(--amber); }
+  input[type="range"]{
+    width:100%;
+    accent-color:var(--amber);
+    height:4px;
+    margin-top:4px;
+  }
+  .dollar-input{ position:relative; }
+  .dollar-input::before{
+    content:"$";
+    position:absolute;
+    left:10px; top:9px;
+    color:var(--text-dim);
+    font-family:'JetBrains Mono',monospace;
+    font-size:14px;
+    pointer-events:none;
+  }
+  .dollar-input input{ padding-left:22px; }
+
+  .reward-type-toggle{
+    display:flex;
+    gap:20px;
+    flex-wrap:wrap;
+    margin-bottom:18px;
+    padding-bottom:16px;
+    border-bottom:1px solid var(--line);
+  }
+  .reward-type-option{
+    display:flex;
+    align-items:center;
+    gap:9px;
+    font-size:13px;
+    color:var(--text);
+    cursor:pointer;
+  }
+  .reward-type-option input[type="checkbox"]{
+    width:17px; height:17px;
+    accent-color:var(--amber);
+    cursor:pointer;
+    flex-shrink:0;
+  }
+  .equation-row{
+    display:flex;
+    align-items:center;
+    gap:12px;
+  }
+  .equation-row .dollar-input{ flex:0 0 120px; }
+  .equation-row input[type="number"]:not(.dollar-input input){
+    flex:1;
+  }
+  .equation-row .eq-sign{
+    font-size:18px;
+    font-weight:700;
+    color:var(--text-dim);
+  }
+  .equation-row .eq-unit{
+    font-size:12.5px;
+    color:var(--text-dim);
+    white-space:nowrap;
+  }
+
+  .readouts{
+    display:flex;
+    gap:14px;
+    margin-top:18px;
+    flex-wrap:wrap;
+  }
+  .readout{
+    flex:1;
+    min-width:150px;
+    background:var(--panel-2);
+    border:1px solid var(--line);
+    border-left:3px solid var(--line);
+    border-radius:8px;
+    padding:14px 16px;
+  }
+  .readout .rlabel{
+    font-size:11px;
+    text-transform:uppercase;
+    letter-spacing:0.06em;
+    color:var(--text-dim);
+    margin-bottom:6px;
+  }
+  .readout-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:10px;
+    flex-wrap:wrap;
+    margin-bottom:6px;
+  }
+  .readout-header .rlabel{ margin-bottom:0; }
+  .readout-bottom-btn{
+    margin-top:14px;
+  }
+  .readout .rval{
+    font-family:'Inter',sans-serif;
+    font-weight:800;
+    font-size:25px;
+    letter-spacing:-0.01em;
+    transition:opacity .15s;
+  }
+  .readout.orange{ border-left-color:var(--amber); }
+  .readout.orange .rval{ color:var(--amber); }
+  .readout.slate{ border-left-color:var(--slate); }
+  .readout.slate .rval{ color:var(--slate); }
+  .readout .rsub{ font-size:11px; color:var(--text-dim); margin-top:4px; }
+
+  .flowbar{
+    display:flex;
+    width:100%;
+    height:34px;
+    border-radius:6px;
+    overflow:hidden;
+    margin-top:16px;
+    border:1px solid var(--line);
+  }
+  .flowbar .seg{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-family:'JetBrains Mono',monospace;
+    font-size:11px;
+    font-weight:600;
+    color:var(--bg);
+    white-space:nowrap;
+    overflow:hidden;
+    transition:width .2s ease;
+  }
+  .flowbar .seg.orange{ background:linear-gradient(90deg, var(--orange), var(--amber)); }
+  .flowbar .seg.slate{ background:var(--slate); }
+  .flowbar .seg.muted{ background:var(--panel-2); color:var(--text-dim); }
+  .flow-legend{
+    display:flex;
+    gap:18px;
+    margin-top:10px;
+    font-size:11.5px;
+    color:var(--text-dim);
+    flex-wrap:wrap;
+  }
+  .flow-legend .dot{
+    display:inline-block;
+    width:8px; height:8px;
+    border-radius:50%;
+    margin-right:6px;
+  }
+
+  table{ width:100%; border-collapse:collapse; }
+  .stage-table-head{
+    display:grid;
+    grid-template-columns:1.3fr 0.8fr 1fr 0.9fr 0.9fr 28px;
+    gap:10px;
+    font-size:10.5px;
+    text-transform:uppercase;
+    letter-spacing:0.05em;
+    color:var(--text-dim);
+    padding:0 4px 8px;
+    border-bottom:1px solid var(--line);
+  }
+  .stage-row{
+    display:grid;
+    grid-template-columns:1.3fr 0.8fr 1fr 0.9fr 0.9fr 28px;
+    gap:10px;
+    align-items:center;
+    padding:10px 4px;
+    border-bottom:1px solid var(--line);
+  }
+  .stage-row input[type="text"]{
+    width:100%;
+    background:transparent;
+    border:none;
+    border-bottom:1px dashed var(--line);
+    color:var(--text);
+    font-family:'Inter',sans-serif;
+    font-size:13px;
+    padding:4px 2px;
+  }
+  .stage-row input[type="text"]:focus{ outline:none; border-color:var(--amber); }
+  .stage-row input[type="number"]{ padding:6px 8px; font-size:12.5px; }
+  .stage-row .reach-toggle{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    cursor:pointer;
+  }
+  .stage-row .reach-toggle input[type="checkbox"]{
+    width:17px; height:17px;
+    accent-color:var(--amber);
+    cursor:pointer;
+    flex-shrink:0;
+  }
+  .stage-row .reach-toggle .reach-label{
+    font-size:12px;
+    font-family:'Inter',sans-serif;
+    font-weight:600;
+    color:var(--text-dim);
+  }
+  .stage-row .reach-toggle .reach-label.on{ color:var(--amber); }
+  .stage-row .reach-toggle .reach-label.off{ color:var(--slate); }
+  .mono-cell{ font-family:'JetBrains Mono',monospace; font-size:12.5px; }
+  .mono-cell.orange{ color:var(--amber); }
+  .mono-cell.slate{ color:var(--slate); }
+  .rm-btn{
+    background:none;
+    border:1px solid var(--line);
+    color:var(--text-dim);
+    border-radius:5px;
+    width:24px; height:24px;
+    cursor:pointer;
+    font-size:13px;
+    line-height:1;
+  }
+  .rm-btn:hover{ border-color:var(--warn); color:var(--warn); }
+
+  .alloc-status{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-top:14px;
+    font-family:'JetBrains Mono',monospace;
+    font-size:12px;
+  }
+  .alloc-status.ok{ color:var(--amber); }
+  .alloc-status.bad{ color:var(--warn); }
+  .tally{
+    display:flex;
+    gap:14px;
+    margin-top:14px;
+    flex-wrap:wrap;
+  }
+  .tally-item{
+    flex:1;
+    min-width:160px;
+    background:var(--panel-2);
+    border:1px solid var(--line);
+    border-radius:8px;
+    padding:12px 16px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+  }
+  .tlabel{ font-size:11.5px; color:var(--text-dim); }
+  .tval{
+    font-family:'Inter',sans-serif;
+    font-weight:800;
+    font-size:16px;
+    color:var(--slate);
+  }
+  .tval.orange{ color:var(--amber); }
+  .row-actions{ display:flex; justify-content:space-between; margin-top:14px; }
+
+  .summary-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:14px;
+  }
+  .summary-details{ margin-bottom:4px; }
+  .summary-card{
+    background:var(--panel-2);
+    border:1px solid var(--line);
+    border-radius:8px;
+    padding:16px;
+  }
+  .summary-card .slabel{ font-size:11.5px; color:var(--text-dim); margin-bottom:6px; }
+  .summary-card .sval{ font-family:'Inter',sans-serif; font-size:22px; font-weight:800; letter-spacing:-0.01em; }
+  .summary-card .sval.orange{ color:var(--amber); }
+  .summary-card .sval.slate{ color:var(--slate); }
+  .summary-card .snote{ font-size:11px; color:var(--text-dim); margin-top:4px; }
+
+  .bottom-line-tag{
+    text-align:center;
+    font-size:11.5px;
+    font-weight:700;
+    letter-spacing:0.05em;
+    color:var(--text-dim);
+    margin:18px 0 12px;
+  }
+  .summary-highlights{ margin-top:0; }
+  .summary-card.highlight{
+    position:relative;
+    padding:24px 20px 22px;
+    border-radius:12px;
+    border-width:2px;
+    border-style:solid;
+    overflow:hidden;
+  }
+  .summary-card.highlight::before{
+    content:"";
+    position:absolute;
+    top:0; left:0; right:0;
+    height:5px;
+  }
+  .summary-card.highlight .hl-tag{
+    display:inline-block;
+    font-size:10px;
+    font-weight:800;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    padding:3px 9px;
+    border-radius:999px;
+    margin-bottom:10px;
+  }
+  .summary-card.highlight .slabel{ font-size:13px; font-weight:700; color:var(--text); margin-bottom:8px; }
+  .summary-card.highlight .sval{ font-size:40px; letter-spacing:-0.02em; }
+  .summary-card.highlight .snote{ font-size:12px; margin-top:6px; color:var(--text-dim); }
+  .summary-card.highlight.orange{
+    background:linear-gradient(160deg, rgba(245,166,35,0.28), rgba(245,166,35,0.05));
+    border-color:var(--amber);
+    box-shadow:0 0 0 1px rgba(245,166,35,0.15), 0 16px 40px -14px rgba(245,166,35,0.55);
+  }
+  .summary-card.highlight.orange::before{ background:var(--amber); }
+  .summary-card.highlight.orange .hl-tag{ background:var(--amber); color:#1A0F05; }
+  .summary-card.highlight.slate{
+    background:linear-gradient(160deg, rgba(136,145,181,0.28), rgba(136,145,181,0.05));
+    border-color:var(--slate);
+    box-shadow:0 0 0 1px rgba(136,145,181,0.15), 0 16px 40px -14px rgba(136,145,181,0.55);
+  }
+  .summary-card.highlight.slate::before{ background:var(--slate); }
+  .summary-card.highlight.slate .hl-tag{ background:var(--slate); color:#0B1330; }
+
+  footer{
+    margin-top:40px;
+    padding-top:18px;
+    border-top:1px solid var(--line);
+    font-size:11.5px;
+    color:var(--text-dim);
+    line-height:1.6;
+  }
+
+  .global-disclaimer{
+    text-align:center;
+    font-size:11px;
+    font-style:italic;
+    color:var(--text-dim);
+    opacity:0.85;
+    margin:0 0 28px;
+  }
+
+  .legal-footer{
+    text-align:center;
+    font-size:10.5px;
+    letter-spacing:0.03em;
+    color:var(--text-dim);
+    opacity:0.7;
+    margin:36px 0 4px;
+    padding-top:16px;
+    border-top:1px solid var(--line);
+  }
+
+  .view-toggle-wrap{
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    gap:12px;
+    margin-bottom:28px;
+    position:sticky;
+    top:0;
+    z-index:40;
+    background:var(--bg);
+    padding:14px 0;
+    box-shadow:0 12px 24px -12px rgba(0,0,0,0.5);
+  }
+  .view-toggle{
+    display:flex;
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:10px;
+    padding:4px;
+    gap:4px;
+  }
+  .industry-dropdown{ position:relative; }
+  .industry-dd-trigger{
+    display:flex;
+    align-items:center;
+    gap:9px;
+    font-size:12.5px;
+    font-weight:700;
+    color:var(--amber);
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:10px;
+    padding:11px 16px;
+    cursor:pointer;
+    font-family:'Inter',sans-serif;
+    transition:border-color .15s, background .15s;
+  }
+  .industry-dd-trigger:hover{ border-color:var(--amber); }
+  .industry-dd-trigger[aria-expanded="true"]{ border-color:var(--amber); background:var(--panel-2); }
+  .industry-dd-arrow{
+    font-size:10px;
+    line-height:1;
+    transition:transform .2s ease;
+    flex-shrink:0;
+  }
+  .industry-dd-trigger[aria-expanded="true"] .industry-dd-arrow{ transform:rotate(180deg); }
+  .industry-dd-menu{
+    position:absolute;
+    top:calc(100% + 8px);
+    right:0;
+    min-width:230px;
+    background:var(--panel-2);
+    border:1px solid var(--line);
+    border-radius:12px;
+    padding:6px;
+    box-shadow:0 20px 44px -14px rgba(0,0,0,0.6);
+    z-index:60;
+    display:flex;
+    flex-direction:column;
+    gap:2px;
+  }
+  .industry-dd-item{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+    width:100%;
+    text-align:left;
+    background:none;
+    border:none;
+    border-radius:8px;
+    padding:10px 12px;
+    font-size:13px;
+    font-weight:600;
+    color:var(--text);
+    cursor:pointer;
+    font-family:'Inter',sans-serif;
+    transition:background .15s, color .15s;
+  }
+  .industry-dd-item:hover{ background:rgba(245,166,35,0.14); color:var(--amber); }
+  .industry-dd-item.is-active{ color:var(--amber); }
+  .industry-dd-item .soon-tag{
+    font-size:9px;
+    font-weight:800;
+    text-transform:uppercase;
+    letter-spacing:0.04em;
+    color:var(--text-dim);
+    background:var(--panel);
+    border:1px solid var(--line);
+    padding:3px 7px;
+    border-radius:999px;
+    flex-shrink:0;
+  }
+  .vt-btn{
+    font-size:12.5px;
+    font-weight:700;
+    color:var(--text-dim);
+    background:transparent;
+    border:none;
+    border-radius:7px;
+    padding:8px 16px;
+    cursor:pointer;
+    transition:background .15s, color .15s;
+  }
+  .vt-btn:hover{ color:var(--text); }
+  .vt-btn.is-active{
+    color:#1A0F05;
+    background:linear-gradient(135deg, var(--orange), var(--amber));
+  }
+
+  .deal-terms-strip{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:24px;
+    flex-wrap:wrap;
+    max-width:640px;
+    margin:0 auto 26px;
+  }
+  .dts-field{
+    display:flex;
+    align-items:baseline;
+    gap:6px;
+  }
+  .dts-label{
+    font-size:10.5px;
+    text-transform:uppercase;
+    letter-spacing:0.05em;
+    color:var(--text-dim);
+    font-weight:700;
+    white-space:nowrap;
+  }
+  .dts-field .dollar-input,
+  .dts-field .pct-input{ width:58px; }
+  .dts-field input[type="number"]{
+    width:100%;
+    background:transparent;
+    border:none;
+    border-bottom:1px dashed var(--line);
+    padding:0 2px 1px;
+    font-size:13px;
+    font-weight:700;
+    color:var(--text);
+    text-align:left;
+  }
+  .dts-field input[type="number"]:hover,
+  .dts-field input[type="number"]:focus{ border-bottom-color:var(--amber); }
+  .dts-field .dollar-input input{ padding-left:14px; }
+  .dts-field .pct-input input{ padding-right:18px; }
+  .dts-field .dollar-input::before{ left:2px; top:4px; font-size:13px; }
+  .dts-field .pct-input::after{ right:5px; top:4px; font-size:12px; }
+
+  .loyalty-options-wrap{
+    text-align:center;
+    margin:72px 0 0;
+  }
+  .model-toggle-wrap{
+    display:flex;
+    justify-content:center;
+    margin:14px 0 4px;
+  }
+  .model-toggle{
+    display:flex;
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:7px;
+    padding:2px;
+    gap:2px;
+  }
+  .model-toggle-btn{
+    font-size:10.5px;
+    font-weight:700;
+    letter-spacing:0.02em;
+    color:var(--text-dim);
+    background:transparent;
+    border:none;
+    border-radius:5px;
+    padding:5px 11px;
+    cursor:pointer;
+    font-family:'Inter',sans-serif;
+    transition:background .15s, color .15s;
+  }
+  .model-toggle-btn:hover{ color:var(--text); }
+  .model-toggle-btn.is-active{
+    color:var(--amber);
+    background:var(--panel-2);
+  }
+  .splits-dive-wrap{
+    text-align:center;
+    margin:32px 0 8px;
+  }
+  .splits-dive-link{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    background:none;
+    border:none;
+    border-bottom:1px dashed var(--line);
+    color:var(--text-dim);
+    font-family:'Inter',sans-serif;
+    font-size:13px;
+    font-weight:600;
+    padding:0 2px 3px;
+    cursor:pointer;
+    transition:color .15s, border-color .15s;
+  }
+  .splits-dive-link:hover{ color:var(--amber); border-bottom-color:var(--amber); }
+  .splits-dive-link .dive-arrow{ display:inline-block; transition:transform .15s; }
+  .splits-dive-link:hover .dive-arrow{ transform:translateX(3px); }
+
+  .pct-input{ position:relative; }
+  .pct-input::after{
+    content:"%";
+    position:absolute;
+    right:8px; top:6px;
+    color:var(--text-dim);
+    font-family:'JetBrains Mono',monospace;
+    font-size:13px;
+    pointer-events:none;
+  }
+  .metric-toggle{
+    display:flex;
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:10px;
+    padding:4px;
+    gap:4px;
+    margin-bottom:24px;
+  }
+  .mt-btn{
+    flex:1;
+    font-size:12px;
+    font-weight:700;
+    color:var(--text-dim);
+    background:transparent;
+    border:none;
+    border-radius:7px;
+    padding:9px 10px;
+    cursor:pointer;
+    text-align:center;
+    transition:background .15s, color .15s;
+  }
+  .mt-btn:hover{ color:var(--text); }
+  .mt-btn.is-active{
+    color:#1A0F05;
+    background:linear-gradient(135deg, var(--orange), var(--amber));
+  }
+  .receipt-row.sub.is-active{
+    color:var(--text);
+    font-weight:700;
+  }
+  .receipt-row.sub.is-active span:last-child{ color:var(--amber); }
+
+  .campaign-hero{
+    position:relative;
+    text-align:center;
+    padding:18px 8px 8px;
+    margin-bottom:8px;
+    overflow:hidden;
+  }
+  .campaign-hero::before{
+    content:"";
+    position:absolute;
+    left:50%; top:46%;
+    transform:translate(-50%,-50%);
+    width:560px; max-width:130%; height:300px;
+    background:radial-gradient(ellipse at center, rgba(245,166,35,0.20) 0%, rgba(245,166,35,0) 65%);
+    pointer-events:none;
+    filter:blur(6px);
+  }
+  .ch-tier{
+    position:relative;
+    font-style:italic;
+    font-weight:600;
+    font-size:15px;
+    color:var(--text-dim);
+    margin:0 0 12px;
+  }
+  .ch-label{
+    position:relative;
+    font-size:11.5px;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    color:var(--text-dim);
+    font-weight:700;
+    margin:0 0 8px;
+  }
+  .ch-bignum{
+    position:relative;
+    font-weight:800;
+    letter-spacing:-0.02em;
+    line-height:1;
+    font-size:clamp(44px,11vw,84px);
+    color:var(--amber);
+  }
+  .ch-sub{
+    position:relative;
+    font-size:13.5px;
+    color:var(--text-dim);
+    margin:14px 0 0;
+  }
+
+  .campaign-slider-wrap{ margin:8px 0 30px; }
+  .campaign-slider{
+    -webkit-appearance:none; appearance:none;
+    width:100%; height:8px;
+    border-radius:999px;
+    background:linear-gradient(90deg, var(--orange) 0%, var(--amber) var(--fill,50%), var(--panel-2) var(--fill,50%), var(--panel-2) 100%);
+    outline:none; cursor:pointer;
+  }
+  .campaign-slider::-webkit-slider-thumb{
+    -webkit-appearance:none; appearance:none;
+    width:26px; height:26px; border-radius:50%;
+    background:var(--panel-2); border:3px solid var(--amber);
+    box-shadow:0 3px 12px rgba(0,0,0,0.4);
+    cursor:grab;
+  }
+  .campaign-slider::-moz-range-thumb{
+    width:22px; height:22px; border-radius:50%;
+    background:var(--panel-2); border:3px solid var(--amber);
+    box-shadow:0 3px 12px rgba(0,0,0,0.4);
+    cursor:grab;
+  }
+  .campaign-ticks{ display:flex; justify-content:space-between; margin-top:12px; gap:4px; }
+  .campaign-tick{
+    background:none; border:none; border-top:2px solid transparent;
+    padding:6px 2px; cursor:pointer;
+    font-size:11px; font-weight:600; letter-spacing:0.02em;
+    color:var(--text-dim); flex:1; text-align:center;
+    transition:color .15s, border-color .15s;
+  }
+  .campaign-tick:hover{ color:var(--text); }
+  .campaign-tick.is-active{ color:var(--amber); border-top-color:var(--amber); }
+  .campaign-hint{ text-align:center; font-size:12px; color:var(--text-dim); margin:14px 0 0; }
+
+  .campaign-chips{ display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:20px; }
+  .chip{
+    background:var(--panel-2);
+    border:1px solid var(--line);
+    border-radius:10px;
+    padding:14px 14px 12px;
+    display:flex; flex-direction:column; gap:4px;
+  }
+  .chip-k{ font-size:11px; letter-spacing:0.08em; text-transform:uppercase; color:var(--text-dim); font-weight:600; }
+  .chip-v{ font-size:23px; font-weight:800; color:var(--text); }
+  .chip-note{ font-size:10.5px; color:var(--text-dim); opacity:0.85; }
+  .chip-linked{ border-color:rgba(245,166,35,0.4); cursor:pointer; }
+  .chip-linked .chip-v{ color:var(--amber); }
+  .chip-linked:hover{ border-color:var(--amber); }
+
+  .campaign-metrics{ display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:22px; }
+  .cmetric{
+    background:linear-gradient(180deg, rgba(245,166,35,0.12), rgba(245,166,35,0.02));
+    border:1px solid rgba(245,166,35,0.22);
+    border-radius:10px;
+    padding:16px 14px;
+    display:flex; flex-direction:column; gap:6px;
+  }
+  .cmetric-v{ font-size:26px; font-weight:800; color:var(--amber); line-height:1; }
+  .cmetric-k{ font-size:12px; color:var(--text); opacity:0.9; }
+
+  .campaign-inputs{ margin-bottom:22px; }
+
+  .lp-inputs-head{
+    display:flex; justify-content:space-between; align-items:baseline;
+    gap:12px; margin-bottom:16px; flex-wrap:wrap;
+  }
+  .lp-inputs-title{
+    font-size:12px; letter-spacing:0.1em; text-transform:uppercase;
+    color:var(--text-dim); font-weight:700;
+  }
+  .lp-inputs-total{ font-size:12.5px; color:var(--amber); font-weight:700; }
+
+  .audience-grid{
+    display:grid; grid-template-columns:1fr 1fr; gap:12px;
+    margin-bottom:14px;
+  }
+  .audience-card-wide{ grid-column:1 / -1; }
+  .audience-card{
+    background:var(--panel-2);
+    border:1px solid var(--line);
+    border-radius:10px;
+    padding:14px 14px 12px;
+    display:flex; flex-direction:column; gap:10px;
+  }
+  .audience-cardname{ font-size:12.5px; font-weight:700; color:var(--amber); letter-spacing:0.02em; }
+  .audience-name-input{
+    background:transparent;
+    border:none;
+    border-bottom:1px dashed rgba(245,166,35,0.4);
+    color:var(--amber);
+    font-size:12.5px;
+    font-weight:700;
+    letter-spacing:0.02em;
+    font-family:'Inter',sans-serif;
+    padding:0 0 2px;
+    width:100%;
+  }
+  .audience-name-input:focus{ outline:none; border-bottom-color:var(--amber); }
+  .audience-fields{ display:flex; gap:10px; }
+  .audience-field{ display:flex; flex-direction:column; gap:6px; flex:1; }
+  .audience-flabel{
+    font-size:10.5px; letter-spacing:0.05em; text-transform:uppercase;
+    color:var(--text-dim); font-weight:600;
+  }
+  .audience-field input[type="number"]{ font-size:14px; padding:8px 10px; }
+  .audience-sub{ font-size:11px; color:var(--text-dim); }
+  .audience-sub-note{ font-style:italic; opacity:0.85; }
+
+  .dau-fetch-row{
+    display:flex;
+    gap:8px;
+    margin-top:2px;
+  }
+  .dau-fetch-input{
+    flex:1;
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:7px;
+    padding:8px 10px;
+    font-size:12.5px;
+    color:var(--text);
+    font-family:'Inter',sans-serif;
+  }
+  .dau-fetch-input::placeholder{ color:var(--text-dim); opacity:0.7; }
+  .dau-fetch-btn{ flex-shrink:0; }
+  .dau-fetch-status{
+    font-size:11.5px;
+    line-height:1.4;
+    padding:2px 2px 0;
+  }
+  .dau-fetch-status.loading{ color:var(--text-dim); }
+  .dau-fetch-status.success{ color:var(--amber); font-weight:600; }
+  .dau-fetch-status.error{ color:#E8622C; font-style:italic; }
+
+  .audience-expand-toggle{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    width:100%;
+    background:transparent;
+    border:none;
+    border-top:1px dashed var(--line);
+    border-bottom:1px dashed var(--line);
+    padding:12px 2px;
+    margin:14px 0;
+    font-size:12.5px;
+    font-weight:600;
+    color:var(--amber);
+    cursor:pointer;
+    text-align:left;
+  }
+  .audience-expand-toggle:hover{ color:var(--orange); }
+  .audience-expand-toggle #audienceExpandIcon{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    width:16px; height:16px;
+    border-radius:50%;
+    border:1px solid var(--amber);
+    font-size:11px;
+    line-height:1;
+    flex-shrink:0;
+  }
+
+  .campaign-receipt{ margin-bottom:20px; }
+
+  .campaign-blur{
+    filter:blur(9px);
+    user-select:none;
+    transition:filter .3s ease;
+  }
+  .campaign-calculate-wrap{
+    text-align:center;
+    margin:22px 0 26px;
+  }
+  .campaign-calculate-btn{
+    font-size:14px;
+    padding:13px 34px;
+    border-radius:10px;
+  }
+  .campaign-calculate-hint{
+    font-size:11.5px;
+    color:var(--text-dim);
+    max-width:420px;
+    margin:12px auto 0;
+    line-height:1.5;
+  }
+  .campaign-receipt-head{ margin-bottom:14px; }
+  .campaign-receipt-head .step-title{ font-size:15px; }
+  .math-toggle{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    width:100%;
+    background:none;
+    border:none;
+    border-bottom:1px solid var(--line);
+    padding:0 0 12px;
+    cursor:pointer;
+    color:inherit;
+    font-family:inherit;
+    text-align:left;
+  }
+  .math-toggle:hover .step-title{ color:var(--amber); }
+  .math-toggle-label{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    flex-shrink:0;
+    margin-left:10px;
+    font-size:12.5px;
+    font-weight:600;
+    color:var(--amber);
+  }
+  .math-toggle:hover .math-toggle-label{ color:var(--orange); }
+  .math-toggle-icon{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    width:16px; height:16px;
+    border-radius:50%;
+    border:1px solid var(--amber);
+    font-size:11px;
+    line-height:1;
+    flex-shrink:0;
+  }
+  .receipt-row{
+    display:flex; justify-content:space-between; align-items:baseline;
+    gap:16px; padding:7px 0; font-size:13.5px; color:var(--text);
+  }
+  .receipt-row span:last-child{ font-weight:700; white-space:nowrap; }
+  .receipt-row.op{ color:var(--text-dim); font-style:italic; font-size:12.5px; }
+  .receipt-row.op span:last-child{ color:var(--text-dim); font-weight:600; }
+  .receipt-row.sub2{ color:var(--text-dim); font-size:12.5px; }
+  .receipt-row.sub2 span:last-child{ color:var(--text-dim); font-weight:600; }
+  .receipt-row.eq{ border-top:1px dashed var(--line); margin-top:2px; padding-top:9px; }
+  .receipt-row.sub{ color:var(--text-dim); font-size:12.5px; }
+  .receipt-row.total{
+    border-top:2px solid var(--line);
+    margin-top:10px; padding-top:12px;
+    font-weight:700; font-size:14.5px;
+  }
+  .receipt-row.total span:last-child{ font-size:19px; color:var(--amber); }
+
+  #rcAvailableNativeRow{ padding-top:9px; }
+  #rcAvailableNativeRow span:first-child{ font-weight:700; color:var(--text); font-size:14.5px; }
+  #rcAvailableNative{ font-size:23px; font-weight:800; color:var(--amber); }
+  #rcAvailableDollarRow{ font-weight:600; font-size:12.5px; border-top:1px solid var(--line); margin-top:6px; padding-top:8px; }
+  #rcAvailableDollarLabel{ color:var(--text-dim); font-weight:600; }
+  #rcAvailableDollar{ font-size:14px; color:var(--text-dim); font-weight:600; }
+  #rcAvailableDollarRow.rc-prominent{ font-weight:700; font-size:14.5px; border-top:2px solid var(--line); margin-top:10px; padding-top:12px; }
+  #rcAvailableDollarRow.rc-prominent #rcAvailableDollarLabel{ color:var(--text); }
+  #rcAvailableDollarRow.rc-prominent #rcAvailableDollar{ font-size:23px; color:var(--amber); font-weight:800; }
+
+  .annualized{
+    margin-top:22px;
+    background:var(--panel-2);
+    border:1px solid var(--line);
+    border-radius:10px;
+    padding:16px 16px 14px;
+  }
+  .annualized-title{
+    font-size:11px; letter-spacing:0.1em; text-transform:uppercase;
+    color:var(--text-dim); font-weight:700;
+  }
+  .annualized-grid{
+    display:grid; grid-template-columns:1fr 1fr; gap:14px;
+    margin-top:12px;
+  }
+  .annualized-grid > div{ display:flex; flex-direction:column; gap:4px; }
+  .ann-v{ font-size:19px; font-weight:800; color:var(--text); }
+  .ann-k{ font-size:11.5px; color:var(--text-dim); }
+  .ann-foot{ font-size:11px; color:var(--text-dim); margin:12px 0 0; line-height:1.5; }
+
+  .industry-impact{ margin-bottom:22px; border-color:rgba(245,166,35,0.3); scroll-margin-top:90px; }
+  .impact-stats-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:12px;
+    margin:18px 0 24px;
+  }
+  .impact-stat{
+    background:linear-gradient(160deg, rgba(245,166,35,0.14), rgba(245,166,35,0.02));
+    border:1px solid rgba(245,166,35,0.25);
+    border-radius:10px;
+    padding:16px 14px;
+    display:flex;
+    flex-direction:column;
+    gap:6px;
+  }
+  .impact-stat-v{
+    font-size:32px;
+    font-weight:800;
+    color:var(--amber);
+    letter-spacing:-0.01em;
+    line-height:1;
+  }
+  .impact-stat-k{ font-size:12px; color:var(--text); line-height:1.4; }
+  .impact-calc-head{ margin-top:24px; }
+  .impact-hero{
+    position:relative;
+    overflow:hidden;
+    margin:18px 0 20px;
+    padding:26px 22px 24px;
+    border-radius:14px;
+    border:2px solid var(--amber);
+    background:linear-gradient(160deg, rgba(245,166,35,0.30), rgba(245,166,35,0.05));
+    box-shadow:0 0 0 1px rgba(245,166,35,0.15), 0 18px 44px -14px rgba(245,166,35,0.6);
+  }
+  .impact-hero::before{
+    content:"";
+    position:absolute;
+    top:0; left:0; right:0;
+    height:5px;
+    background:linear-gradient(90deg, var(--orange), var(--amber));
+  }
+  .impact-hero-tag{
+    display:inline-block;
+    font-size:10px;
+    font-weight:800;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    padding:4px 10px;
+    border-radius:999px;
+    background:var(--amber);
+    color:#1A0F05;
+    margin-bottom:12px;
+  }
+  .impact-hero-label{
+    font-size:13.5px;
+    font-weight:700;
+    color:var(--text);
+    margin-bottom:8px;
+  }
+  .impact-hero-val{
+    font-size:44px;
+    font-weight:800;
+    letter-spacing:-0.02em;
+    color:var(--amber);
+    line-height:1;
+  }
+  .impact-hero-sub{
+    font-size:12.5px;
+    color:var(--text-dim);
+    margin-top:8px;
+  }
+  .tpv-hero{
+    margin-top:24px;
+    border-color:var(--slate);
+  }
+  .tpv-hero::before{ background:linear-gradient(90deg, var(--slate), var(--amber)); }
+  .tpv-hero .impact-hero-tag{ background:linear-gradient(90deg, var(--slate), var(--amber)); color:#0B1330; }
+  .impact-quote{
+    font-style:italic;
+    margin-top:16px;
+    padding-top:14px;
+    border-top:1px solid var(--line);
+  }
+  .industry-impact-comingsoon{
+    margin-bottom:22px;
+    text-align:center;
+    padding:30px 20px;
+    border-style:dashed;
+    border-color:var(--line);
+    scroll-margin-top:90px;
+  }
+  .industry-impact-comingsoon .step-head{ border-bottom:none; margin-bottom:6px; justify-content:center; display:flex; }
+  .industry-impact-comingsoon .panel-note{ margin:0; }
+
+  .campaign-footnote{
+    font-size:11.5px; color:var(--text-dim); line-height:1.6;
+    margin:0 0 20px;
+  }
+
+  .landing-cover{
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:40px 20px;
+  }
+  .landing-logo{
+    display:flex;
+    align-items:center;
+    gap:20px;
+    margin-bottom:22px;
+  }
+  .landing-logo svg{ width:64px; height:64px; flex-shrink:0; }
+  .landing-logo .brand-name{ font-size:32px; text-align:left; }
+  .landing-logo .brand-sub{ text-align:left; }
+  .landing-eyebrow{ text-align:center; margin-bottom:12px; }
+  .landing-h1{ text-align:center; font-size:36px; }
+  .landing-sub-copy{ text-align:center; margin:0 auto 40px; max-width:480px; }
+  .landing-options{
+    display:flex;
+    gap:22px;
+    flex-wrap:wrap;
+    justify-content:center;
+    max-width:700px;
+  }
+  .landing-option{
+    position:relative;
+    overflow:hidden;
+    background:linear-gradient(160deg, rgba(245,166,35,0.16), rgba(245,166,35,0.03));
+    border:2px solid var(--amber);
+    box-shadow:0 0 0 1px rgba(245,166,35,0.12), 0 16px 40px -14px rgba(245,166,35,0.45);
+    border-radius:12px;
+    padding:26px 26px 24px;
+    width:300px;
+    cursor:pointer;
+    text-align:left;
+    display:flex;
+    flex-direction:column;
+    gap:4px;
+    font-family:inherit;
+    transition:transform .15s, box-shadow .15s;
+  }
+  .landing-option::before{
+    content:"";
+    position:absolute;
+    top:0; left:0; right:0;
+    height:5px;
+    background:var(--amber);
+  }
+  .landing-option .hl-tag{
+    display:inline-block;
+    align-self:flex-start;
+    font-size:10px;
+    font-weight:800;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    padding:3px 9px;
+    border-radius:999px;
+    margin-bottom:10px;
+    background:var(--amber);
+    color:#1A0F05;
+  }
+  .landing-option-title{
+    font-family:'Inter',sans-serif;
+    font-size:24px;
+    font-weight:800;
+    letter-spacing:-0.01em;
+    color:var(--text);
+    margin-bottom:6px;
+  }
+  .landing-option-desc{
+    font-size:13.5px;
+    color:var(--text-dim);
+    line-height:1.5;
+    margin-bottom:16px;
+  }
+  .landing-option-cta{
+    font-family:'JetBrains Mono',monospace;
+    font-size:11px;
+    font-weight:700;
+    letter-spacing:0.04em;
+    text-transform:uppercase;
+    color:var(--amber);
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+  }
+  .landing-option-cta .dive-arrow{ transition:transform .15s; }
+  .landing-option:hover{
+    transform:translateY(-3px);
+    box-shadow:0 0 0 1px rgba(245,166,35,0.2), 0 20px 48px -14px rgba(245,166,35,0.6);
+  }
+  .landing-option:hover .dive-arrow{ transform:translateX(3px); }
+  .landing-option-slate{
+    background:linear-gradient(160deg, rgba(136,145,181,0.16), rgba(136,145,181,0.03));
+    border-color:var(--slate);
+    box-shadow:0 0 0 1px rgba(136,145,181,0.12), 0 16px 40px -14px rgba(136,145,181,0.45);
+  }
+  .landing-option-slate::before{ background:var(--slate); }
+  .landing-option-slate .hl-tag{ background:var(--slate); color:#0B1330; }
+  .landing-option-slate .landing-option-cta{ color:var(--slate); }
+  .landing-option-slate:hover{
+    box-shadow:0 0 0 1px rgba(136,145,181,0.2), 0 20px 48px -14px rgba(136,145,181,0.6);
+  }
+  .landing-internal-note{
+    font-size:11.5px;
+    font-style:italic;
+    color:var(--text-dim);
+    opacity:0.75;
+    margin:34px 0 0;
+  }
+  .landing-legal-footer{
+    margin:20px 0 0;
+    padding-top:0;
+    border-top:none;
+  }
+  @media (max-width:560px){
+    .landing-logo{ flex-direction:column; gap:12px; }
+    .landing-logo .brand-name{ text-align:center; font-size:28px; }
+    .landing-logo .brand-sub{ text-align:center; }
+    .landing-h1{ font-size:28px; }
+    .landing-option{ width:100%; max-width:320px; }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ transition:none !important; }
+  }
+
+  @media (max-width:640px){
+    .grid2, .grid3{ grid-template-columns:1fr; }
+    .stage-table-head{ display:none; }
+    .stage-row{
+      grid-template-columns:1fr;
+      row-gap:8px;
+      padding:14px 4px;
+    }
+    .stage-row .rm-btn{ justify-self:end; }
+    .summary-grid{ grid-template-columns:1fr; }
+    h1{ font-size:28px; }
+    .campaign-chips, .campaign-metrics{ grid-template-columns:1fr; }
+    .impact-stats-grid{ grid-template-columns:1fr; }
+    .brand-lockup{ gap:12px; }
+    .brand-lockup svg{ width:44px; height:44px; }
+    .brand-name{ font-size:22px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div id="landingCover" class="landing-cover">
+    <div class="landing-logo">
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="hexGradLanding" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#E8622C"/>
+            <stop offset="100%" stop-color="#F5A623"/>
+          </linearGradient>
+        </defs>
+        <polygon points="50,3 93,26 93,74 50,97 7,74 7,26" fill="url(#hexGradLanding)"/>
+        <polygon points="34,28 34,72 51,59 51,41" fill="#FBF6EC"/>
+        <polygon points="53,41 53,59 70,72 70,28" fill="#FBF6EC" opacity="0.82"/>
+      </svg>
+      <div>
+        <div class="brand-name">Loyalty<span class="accent">Play</span><sup>&trade;</sup></div>
+        <span class="brand-sub">BY MISTPLAY</span>
+      </div>
+    </div>
+
+    <p class="eyebrow landing-eyebrow">Retailer Rewards Calculator</p>
+    <h1 class="landing-h1">Choose Your Model</h1>
+    <p class="sub landing-sub-copy">Pick the payment structure that matches your deal &mdash; you can always switch between them later from inside the calculator.</p>
+
+    <div class="landing-options">
+      <button type="button" class="landing-option" id="landingRevShare">
+        <span class="hl-tag">Classic</span>
+        <span class="landing-option-title">Rev Share</span>
+        <span class="landing-option-desc">A flat cost per install, split between the retailer and the customer.</span>
+        <span class="landing-option-cta">Get started <span class="dive-arrow">&rarr;</span></span>
+      </button>
+      <button type="button" class="landing-option landing-option-slate" id="landingRateCard">
+        <span class="hl-tag">Milestone-Based</span>
+        <span class="landing-option-title">Rate Card</span>
+        <span class="landing-option-desc">Pay only when a customer hits a milestone, split between the retailer and the customer.</span>
+        <span class="landing-option-cta">Get started <span class="dive-arrow">&rarr;</span></span>
+      </button>
+    </div>
+
+    <p class="landing-internal-note">This should be chosen ahead of the screenshare with the prospect.</p>
+
+    <p class="legal-footer landing-legal-footer">Confidential &mdash; &copy; Mistplay 2026</p>
+  </div>
+
+  <div id="calculatorApp" style="display:none">
+
+  <button type="button" class="brand-lockup" id="brandLockup" aria-label="Go to Full Campaign">
+    <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="hexGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#E8622C"/>
+          <stop offset="100%" stop-color="#F5A623"/>
+        </linearGradient>
+      </defs>
+      <polygon points="50,3 93,26 93,74 50,97 7,74 7,26" fill="url(#hexGrad)"/>
+      <polygon points="34,28 34,72 51,59 51,41" fill="#FBF6EC"/>
+      <polygon points="53,41 53,59 70,72 70,28" fill="#FBF6EC" opacity="0.82"/>
+    </svg>
+    <div>
+      <div class="brand-name">Loyalty<span class="accent">Play</span><sup>&trade;</sup></div>
+      <span class="brand-sub">BY MISTPLAY</span>
+    </div>
+  </button>
+
+  <div class="view-toggle-wrap">
+    <div class="view-toggle" role="tablist">
+      <button class="vt-btn is-active" id="viewTabSplits" role="tab" aria-selected="true">Splits</button>
+      <button class="vt-btn" id="viewTabCampaign" role="tab" aria-selected="false">Full Campaign</button>
+      <button class="vt-btn" id="viewTabInstall" role="tab" aria-selected="false">Per Install</button>
+    </div>
+    <div class="industry-dropdown" id="industryDropdown">
+      <button type="button" class="industry-dd-trigger" id="industryDdTrigger" aria-haspopup="true" aria-expanded="false">
+        <span id="industryDdLabel">Further Impact by Industry</span>
+        <span class="industry-dd-arrow">&#9662;</span>
+      </button>
+      <div class="industry-dd-menu" id="industryDdMenu" style="display:none" role="menu">
+        <button type="button" class="industry-dd-item" data-value="cstore" role="menuitem">C-Store</button>
+        <button type="button" class="industry-dd-item" data-value="restaurant" role="menuitem">Restaurant</button>
+        <button type="button" class="industry-dd-item" data-value="fintech" role="menuitem">Fintech</button>
+        <button type="button" class="industry-dd-item" data-value="retail" role="menuitem">Retail</button>
+      </div>
+    </div>
+  </div>
+
+  <p class="global-disclaimer">Numbers shown are for illustration purposes only. Results are not guaranteed.</p>
+
+  <div id="viewSplits">
+
+  <p class="eyebrow">Retailer Rewards Calculator</p>
+  <h1>The Deal &amp; The Split</h1>
+  <p class="sub">Walk through the core economics one step at a time &mdash; how much the developer pays per install, how much passes to the retailer, and how that gets split with the customer. These numbers are shared with the Full Campaign and Per Install tabs; edit them here or there.</p>
+
+  <div class="presets">
+    <button class="btn primary" id="preset50Splits">50% Scenario</button>
+    <button class="btn" id="preset100Splits">100% Scenario</button>
+    <button class="btn ghost" id="resetBtnSplits">Reset</button>
+  </div>
+
+  <section>
+    <div class="step-head"><span class="step-num">01</span><span class="step-title">The Deal</span></div>
+    <div class="panel">
+      <div class="grid2">
+        <div class="field">
+          <label><span id="cpiLabelText">Cost Per Install (CPI)</span> <span class="val" id="cpiVal">$7.00</span></label>
+          <div class="dollar-input"><input type="number" id="cpi" step="0.50" min="0" value="7.00"></div>
+          <div class="field-note" id="cpiFieldNote">This is all we'll get from the developer for each install &mdash; the entire pool everything below is split from.</div>
+        </div>
+        <div class="field">
+          <label><span id="revShareLabelText">Retailer Revenue Share</span> <span class="val" id="revShareVal">70%</span></label>
+          <input type="range" id="revSharePct" min="0" max="100" step="1" value="70">
+        </div>
+      </div>
+      <div class="flowbar" id="flowbar1"></div>
+      <div class="flow-legend">
+        <span><span class="dot" style="background:var(--amber)"></span><span id="flowLegendRevShare">Revenue share to retailer</span></span>
+        <span><span class="dot" style="background:var(--panel-2)"></span>Retained upstream</span>
+      </div>
+      <div class="readouts">
+        <div class="readout orange">
+          <div class="rlabel" id="revShareOutLabel">Revenue Share to Retailer</div>
+          <div class="rval" id="revShareOut">$4.90</div>
+          <div class="rsub" id="revShareOutSub">this is the full payment to the retailer for this install &mdash; no more money comes from the game developer for this install past this point</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="step-head"><span class="step-num">02</span><span class="step-title">The Split</span></div>
+    <div class="panel">
+      <div class="field">
+        <label><span id="pctInstallerLabelText">% of Revenue Share Passed to Installer</span> <span class="val" id="pctInstallerVal">50%</span></label>
+        <input type="range" id="pctToInstaller" min="0" max="100" step="1" value="50">
+      </div>
+      <div class="flowbar" id="flowbar2"></div>
+      <div class="flow-legend">
+        <span><span class="dot" style="background:var(--amber)"></span>Reward to installer</span>
+        <span><span class="dot" style="background:var(--slate)"></span>Kept by rewards partner</span>
+      </div>
+      <div class="readouts">
+        <div class="readout orange">
+          <div class="rlabel">Total Reward Installer Can Earn</div>
+          <div class="rval" id="rewardOut">$2.45</div>
+        </div>
+        <div class="readout slate">
+          <div class="rlabel">Guaranteed Kept from Split</div>
+          <div class="rval" id="keptGuaranteedOut">$2.45</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <p class="splits-dive-wrap">
+    <button type="button" class="splits-dive-link" id="splitsDiveLink">Let's dive in <span class="dive-arrow">&rarr;</span></button>
+  </p>
+
+  <p class="loyalty-options-wrap">
+    <button type="button" class="splits-dive-link" id="loyaltyOptionsToggle" aria-expanded="false">
+      <span class="math-toggle-icon" id="loyaltyOptionsIcon">+</span> LoyaltyPlay Options
+    </button>
+  </p>
+
+  <div class="model-toggle-wrap" id="modelToggleWrap" style="display:none">
+    <div class="model-toggle" role="tablist">
+      <button type="button" class="model-toggle-btn is-active" id="modelTabRevshare" role="tab" aria-selected="true">Rev Share</button>
+      <button type="button" class="model-toggle-btn" id="modelTabRatecard" role="tab" aria-selected="false">Rate Card</button>
+    </div>
+  </div>
+
+  </div>
+
+  <div id="viewPerInstall" style="display:none">
+
+  <p class="eyebrow">Retailer Rewards Calculator</p>
+  <h1>Dynamic Reward Economics</h1>
+  <p class="sub" id="perInstallSubCopy">The granular, per-install breakdown &mdash; points, fuel rewards, or money back, spread across a milestone schedule. The deal terms below are shared with the Splits and Full Campaign tabs; edit them anywhere and it updates everywhere.</p>
+
+  <div class="deal-terms-strip" id="dealTermsStripInstall">
+    <div class="dts-field">
+      <span class="dts-label">CPI</span>
+      <div class="dollar-input"><input type="number" id="cpiInstall" step="0.50" min="0" value="7.00"></div>
+    </div>
+    <div class="dts-field">
+      <span class="dts-label">Retailer Share</span>
+      <div class="pct-input"><input type="number" id="revShareInstall" step="1" min="0" max="100" value="70"></div>
+    </div>
+    <div class="dts-field">
+      <span class="dts-label">To Installer</span>
+      <div class="pct-input"><input type="number" id="pctInstallerInstall" step="1" min="0" max="100" value="50"></div>
+    </div>
+  </div>
+
+  <div class="panel" id="rateCardSplitPanel" style="display:none">
+    <div class="field">
+      <label>% of Reward Passed to User <span class="val" id="pctInstallerRCVal">50%</span></label>
+      <input type="range" id="pctInstallerRC" min="0" max="100" step="1" value="50">
+      <div class="field-note">We pay the retailer a rate for each reward earned &mdash; the retailer decides how much of that reaches the user. The rest is theirs to keep.</div>
+    </div>
+  </div>
+
+  <div class="presets">
+    <button class="btn primary" id="preset50">50% Scenario</button>
+    <button class="btn" id="preset100">100% Scenario</button>
+    <button class="btn ghost" id="resetBtn">Reset</button>
+  </div>
+
+  <section id="scheduleSection">
+    <div class="step-head"><span class="step-num" id="scheduleStepNum">01</span><span class="step-title">Sample Installer Reward Schedule</span></div>
+    <div class="panel">
+      <div id="scheduleToggleSlot">
+        <div class="reward-type-toggle reward-type-toggle-inline" id="rewardTypeToggleWrap">
+          <label class="reward-type-option">
+            <input type="checkbox" name="rewardType" id="rewardTypePoints">
+            <span>Points</span>
+          </label>
+          <label class="reward-type-option">
+            <input type="checkbox" name="rewardType" id="rewardTypeFuel">
+            <span>Fuel Rewards</span>
+          </label>
+          <label class="reward-type-option">
+            <input type="checkbox" name="rewardType" id="rewardTypeMoney">
+            <span>Money Back</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="field" id="pointsEqBlockInline" style="display:none">
+        <label>Points Equation</label>
+        <div class="equation-row">
+          <div class="dollar-input"><input type="number" id="eqDollarsInline" step="0.01" min="0.00001" value="1"></div>
+          <span class="eq-sign">=</span>
+          <input type="number" id="eqPointsInline" step="1" min="0.00001" value="100">
+          <span class="eq-unit">points</span>
+        </div>
+        <div class="field-note" id="eqRateNoteInline">= $0.01000 per point</div>
+      </div>
+
+      <div class="field" id="fuelBlockInline" style="display:none; margin-bottom:22px;">
+        <label>Average Fill-Up <span class="val" id="avgGallonsValInline">14 gal</span></label>
+        <input type="number" id="avgGallonsInline" step="1" min="1" value="14">
+        <div class="field-note" id="fuelRateNoteInline">= $0.14000 payment per 1&cent; off per gallon</div>
+      </div>
+
+      <p class="panel-note" id="scheduleNote">This models one install. Check off how far it got &mdash; anything past that point never gets claimed, and becomes breakage kept by the rewards partner instead of paid out.</p>
+      <div class="stage-table-head">
+        <div>Stage</div><div id="colHeaderUnits">Points</div><div>Reached</div><div id="colHeaderValue">Value</div><div id="colHeaderBreakage">Breakage</div><div></div>
+      </div>
+      <div id="stageRows"></div>
+      <div class="alloc-status" id="allocStatus">Allocated: 245 / 245 points</div>
+      <div class="tally">
+        <div class="tally-item">
+          <span class="tlabel" id="tallyPointsLabel">Points Given So Far</span>
+          <span class="tval" id="tallyPoints">245 pts</span>
+        </div>
+        <div class="tally-item" id="tallyRetainedItem" style="display:none">
+          <span class="tlabel">Retained by Retailer So Far</span>
+          <span class="tval slate" id="tallyRetained">$0.00</span>
+        </div>
+        <div class="tally-item">
+          <span class="tlabel" id="tallyValueLabel">Worth to This Customer</span>
+          <span class="tval orange" id="tallyValue">$2.45</span>
+        </div>
+      </div>
+      <div class="row-actions">
+        <button class="btn small" id="addStage">+ Add Stage</button>
+        <button class="btn small ghost" id="normalizeBtn">Scale to Match Total</button>
+      </div>
+      <div id="rcExpirationBreakdown" style="display:none; margin-top:16px;">
+        <div class="receipt-row eq" id="rcAvailableNativeRow"><span>Available to be redeemed</span><span id="rcAvailableNative">245 points</span></div>
+        <div class="receipt-row total" id="rcAvailableDollarRow"><span id="rcAvailableDollarLabel">Dollar equivalent</span><span id="rcAvailableDollar">$2.45</span></div>
+      </div>
+    </div>
+  </section>
+
+  <p class="splits-dive-wrap" id="rateCardDiveWrap" style="display:none">
+    <button type="button" class="splits-dive-link" id="rateCardDiveLink">Let's dive in <span class="dive-arrow">&rarr;</span></button>
+  </p>
+
+  <div class="panel" id="expirationPanel" style="display:none">
+    <div class="field">
+      <label>Reward Usage Rate <span class="val" id="usageRateVal">60%</span></label>
+      <input type="range" id="rewardUsagePct" min="0" max="100" step="1" value="60">
+      <div class="field-note">The share of users who actually redeem the reward they're given above &mdash; 100% means everyone uses it, 0% means no one does. Whatever doesn't get used reverts to the retailer as extra upside, on top of whatever they kept from the split.</div>
+    </div>
+  </div>
+
+  <section id="rewardsSection">
+    <div class="step-head"><span class="step-num" id="rewardsStepNum">02</span><span class="step-title">Rewards</span></div>
+    <div class="panel">
+      <div id="rewardsToggleSlot"></div>
+      <div class="field" id="pointsEqBlock">
+        <label>Points Equation</label>
+        <div class="equation-row">
+          <div class="dollar-input"><input type="number" id="eqDollars" step="0.01" min="0.00001" value="1"></div>
+          <span class="eq-sign">=</span>
+          <input type="number" id="eqPoints" step="1" min="0.00001" value="100">
+          <span class="eq-unit">points</span>
+        </div>
+        <div class="field-note" id="eqRateNote">= $0.01000 per point</div>
+      </div>
+
+      <div class="field" id="fuelBlock">
+        <label>Average Fill-Up <span class="val" id="avgGallonsVal">14 gal</span></label>
+        <input type="number" id="avgGallons" step="1" min="1" value="14">
+        <div class="field-note" id="fuelRateNote">= $0.14000 payment per 1&cent; off per gallon</div>
+      </div>
+
+      <div class="field" id="moneyBlock">
+        <div class="field-note">Money back is paid dollar-for-dollar &mdash; every dollar of the reward pool goes straight to the customer as cash, with no point or fuel conversion in between.</div>
+      </div>
+
+      <div class="readouts" id="rewardBudgetReadouts">
+        <div class="readout orange">
+          <div class="rlabel" id="unitsIssuedLabel">Total Points Budget</div>
+          <div class="rval" id="pointsOut">245</div>
+          <div class="rsub" id="unitsIssuedSub">the full budget for this download or install &mdash; not paid all at once</div>
+          <button class="btn small ghost readout-bottom-btn" id="buildExampleBtn">Build Example</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="economicsSection">
+    <div class="step-head"><span class="step-num">03</span><span class="step-title">This Install's Economics</span></div>
+    <div class="summary-grid summary-details">
+      <div class="summary-card">
+        <div class="slabel" id="sumGuaranteedLabel">Guaranteed Kept (from split)</div>
+        <div class="sval slate" id="sumGuaranteed">$2.45</div>
+      </div>
+      <div class="summary-card">
+        <div class="slabel" id="sumBreakageLabel">Breakage (stages not reached)</div>
+        <div class="sval slate" id="sumBreakage">$0.00</div>
+      </div>
+    </div>
+
+    <p class="bottom-line-tag">&darr; where this install's money actually goes &darr;</p>
+
+    <div class="summary-grid summary-highlights">
+      <div class="summary-card highlight slate">
+        <div class="hl-tag">Kept</div>
+        <div class="slabel">Total Kept by Rewards Partner</div>
+        <div class="sval slate" id="sumTotalKept">$2.45</div>
+        <div class="snote" id="sumTotalKeptNote">36% of CPI</div>
+      </div>
+      <div class="summary-card highlight orange">
+        <div class="hl-tag">Paid Out</div>
+        <div class="slabel">Total Paid to Installer</div>
+        <div class="sval orange" id="sumPaid">$2.45</div>
+        <div class="snote" id="sumPaidNote">100% of reward pool</div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    Every field above is editable &mdash; presets load the two scenarios from the original model (50% and 100% revenue pass-through). Reached defaults to every stage, so baseline totals match the source sheet exactly; uncheck a stage in Section 1 to see how that install's breakage adds to the rewards partner's margin.
+  </footer>
+
+  <p class="loyalty-options-wrap">
+    <button type="button" class="splits-dive-link" id="loyaltyOptionsToggle2" aria-expanded="false">
+      <span class="math-toggle-icon" id="loyaltyOptionsIcon2">+</span> LoyaltyPlay Options
+    </button>
+  </p>
+
+  <div class="model-toggle-wrap" id="modelToggleWrap2" style="display:none">
+    <div class="model-toggle" role="tablist">
+      <button type="button" class="model-toggle-btn is-active" id="modelTabRevshare2" role="tab" aria-selected="true">Rev Share</button>
+      <button type="button" class="model-toggle-btn" id="modelTabRatecard2" role="tab" aria-selected="false">Rate Card</button>
+    </div>
+  </div>
+
+  </div>
+
+  <div id="viewCampaign" style="display:none">
+
+    <p class="eyebrow">Full Campaign Projection</p>
+    <h1>Full Campaign Economics</h1>
+    <p class="sub" id="campaignSubCopy">The same per-install economics from the tab above, scaled across an entire campaign. CPI is synced between both tabs &mdash; edit it here or there. Everything else, including the reward per download, stays locked to whatever Section 3 on the Per Install tab works out to.</p>
+
+    <div class="metric-toggle" role="tablist">
+      <button class="mt-btn is-active" id="metricRevenue" data-metric="revenue">Total Shared Revenue</button>
+      <button class="mt-btn" id="metricRetained" data-metric="retained">Retained Upside</button>
+      <button class="mt-btn" id="metricPayment" data-metric="payment">Funded Rewards</button>
+    </div>
+
+    <section class="campaign-hero">
+      <p class="ch-tier" id="chTierName">Benchmark</p>
+      <p class="ch-label" id="chHeroLabel">What Flows to the Retailer Before Any Split</p>
+      <div class="ch-bignum" id="chBigNum">$0</div>
+      <p class="ch-sub" id="chBigSub">per year for your brand at this scenario</p>
+    </section>
+
+    <section class="campaign-slider-wrap" aria-label="Campaign scale selector">
+      <input type="range" class="campaign-slider" id="campaignSlider" min="0" max="4" step="1" value="2">
+      <div class="campaign-ticks" id="campaignTicks"></div>
+      <p class="campaign-hint">Drag from a pilot run on the left to a breakout campaign on the right.</p>
+    </section>
+
+    <div class="deal-terms-strip" id="dealTermsStripCampaign">
+      <div class="dts-field">
+        <span class="dts-label">CPI</span>
+        <div class="dollar-input"><input type="number" id="cpiCampaign" step="0.50" min="0" value="7.00"></div>
+      </div>
+      <div class="dts-field">
+        <span class="dts-label">Retailer Share</span>
+        <div class="pct-input"><input type="number" id="revShareCampaign" step="1" min="0" max="100" value="70"></div>
+      </div>
+      <div class="dts-field">
+        <span class="dts-label">To Installer</span>
+        <div class="pct-input"><input type="number" id="pctInstallerCampaign" step="1" min="0" max="100" value="50"></div>
+      </div>
+    </div>
+
+    <section class="campaign-chips">
+      <div class="chip">
+        <span class="chip-k">Conversion Rate</span>
+        <span class="chip-v" id="chConv">5%</span>
+        <span class="chip-note">moves with this scenario</span>
+      </div>
+      <div class="chip chip-linked" id="chRewardChip" title="Set on the Per Install tab">
+        <span class="chip-k" id="chChipLabel">Revenue Share per Download</span>
+        <span class="chip-v" id="chReward">$2.45</span>
+        <span class="chip-note" id="chRewardChipNote">linked to the Per Install tab &rarr;</span>
+      </div>
+    </section>
+
+    <section class="campaign-metrics">
+      <div class="cmetric">
+        <span class="cmetric-v" id="chDownloads">417</span>
+        <span class="cmetric-k">Game downloads each month</span>
+      </div>
+      <div class="cmetric">
+        <span class="cmetric-v" id="chMonthly">$0</span>
+        <span class="cmetric-k" id="chMonthlyLabel">Revenue share each month</span>
+      </div>
+    </section>
+
+    <div class="panel" id="expirationPanelCampaign" style="display:none">
+      <div class="field">
+        <label>Reward Usage Rate <span class="val" id="usageRateValCampaign">60%</span></label>
+        <input type="range" id="rewardUsagePctCampaign" min="0" max="100" step="1" value="60">
+        <div class="field-note">The share of users who actually redeem their reward &mdash; 100% means everyone uses it, 0% means no one does. Whatever doesn't get used reverts to the retailer as extra upside on top of Retained Upside above.</div>
+      </div>
+    </div>
+
+    <section class="panel campaign-inputs">
+      <div class="lp-inputs-head">
+        <span class="lp-inputs-title">Your Inputs</span>
+        <span class="lp-inputs-total">Total annual audience <span id="audienceVal">1,000,000</span></span>
+      </div>
+
+      <div class="field" id="simpleAudienceField">
+        <label>Audience Size <span class="hint">(best guess is okay)</span></label>
+        <input type="number" id="audienceEstimate" step="1000" min="0" value="1000000">
+        <div class="field-note">Roughly how many people you could reach with this campaign &mdash; total database, subscriber list, whatever ballpark you've got.</div>
+      </div>
+
+      <button type="button" class="audience-expand-toggle" id="audienceExpandToggle">
+        <span id="audienceExpandIcon">+</span><span id="audienceExpandLabel">Know your numbers by channel? Break it down instead</span>
+      </button>
+
+      <div class="audience-grid" id="audienceDetail" style="display:none">
+        <div class="audience-card">
+          <span class="audience-cardname">SMS</span>
+          <div class="audience-fields">
+            <div class="audience-field">
+              <label class="audience-flabel">Members per Campaign</label>
+              <input type="number" id="smsMembers" step="1000" min="0" value="50000">
+            </div>
+            <div class="audience-field">
+              <label class="audience-flabel">Annual Campaigns</label>
+              <input type="number" id="smsCampaigns" step="1" min="0" value="24">
+            </div>
+          </div>
+          <span class="audience-sub">Annual audience <span id="audSmsOut">1,200,000</span></span>
+        </div>
+        <div class="audience-card">
+          <span class="audience-cardname">Email</span>
+          <div class="audience-fields">
+            <div class="audience-field">
+              <label class="audience-flabel">Members per Campaign</label>
+              <input type="number" id="emailMembers" step="1000" min="0" value="150000">
+            </div>
+            <div class="audience-field">
+              <label class="audience-flabel">Annual Campaigns</label>
+              <input type="number" id="emailCampaigns" step="1" min="0" value="24">
+            </div>
+          </div>
+          <span class="audience-sub">Annual audience <span id="audEmailOut">3,600,000</span></span>
+        </div>
+        <div class="audience-card">
+          <span class="audience-cardname">In App</span>
+          <div class="audience-fields">
+            <div class="audience-field">
+              <label class="audience-flabel">Daily Active Users</label>
+              <input type="number" id="dau" step="500" min="0" value="10000">
+            </div>
+          </div>
+          <span class="audience-sub">Annual audience <span id="audInAppOut">2,500,000</span></span>
+          <span class="audience-sub audience-sub-note">Uses a conservative ~250 active days/year</span>
+          <div class="dau-fetch-row">
+            <input type="text" id="dauAppNameInput" class="dau-fetch-input" placeholder="App name, e.g. Taco Bell">
+            <button type="button" id="dauFetchBtn" class="btn small ghost dau-fetch-btn">Fetch</button>
+          </div>
+          <div class="dau-fetch-status" id="dauFetchStatus" style="display:none"></div>
+        </div>
+        <div class="audience-card">
+          <span class="audience-cardname">
+            <input type="text" id="customChannelName" class="audience-name-input" value="Custom Channel" maxlength="40">
+          </span>
+          <div class="audience-fields">
+            <div class="audience-field">
+              <label class="audience-flabel">Annual Audience</label>
+              <input type="number" id="customChannelAudience" step="1000" min="0" value="0">
+            </div>
+          </div>
+          <span class="audience-sub">Anything unique to your business &mdash; loyalty members, push subscribers, in-store visits, whatever fits.</span>
+        </div>
+      </div>
+      <p class="field-note" id="channelNote" style="display:none">SMS and Email scale with the campaigns you run each year. In app scales with daily active users at a conservative estimate of active days. The custom channel is whatever annual number you type in directly. The reward per download stays whatever you set on the Per Install tab.</p>
+    </section>
+
+    <div class="campaign-calculate-wrap" id="campaignCalculateWrap">
+      <button type="button" class="btn primary campaign-calculate-btn" id="campaignCalculateBtn">Calculate</button>
+      <p class="campaign-calculate-hint">Numbers stay hidden until you're ready to reveal them &mdash; handy for keeping a big number under wraps until you've nailed down the specifics with this contact.</p>
+    </div>
+
+    <section class="panel campaign-receipt">
+      <button type="button" class="campaign-receipt-head math-toggle" id="mathToggle" aria-expanded="false">
+        <span class="step-title">The Math Behind This Scenario</span>
+        <span class="math-toggle-label">
+          <span class="math-toggle-icon" id="mathToggleIcon">+</span><span id="mathToggleText">Expand</span>
+        </span>
+      </button>
+      <div id="mathDetails" style="display:none">
+        <div class="receipt-row sub2" id="rowEstimate"><span>Audience size (your estimate)</span><span id="rcEstimate">1,000,000</span></div>
+        <div class="receipt-row sub2" id="rowSms"><span>SMS, members per campaign &times; campaigns</span><span id="rcSms">1,200,000</span></div>
+        <div class="receipt-row sub2" id="rowEmail"><span>Email, members per campaign &times; campaigns</span><span id="rcEmail">3,600,000</span></div>
+        <div class="receipt-row sub2" id="rowInApp"><span id="rcInAppLabel">In app, daily active users &times; 363 days</span><span id="rcInApp">3,630,000</span></div>
+        <div class="receipt-row sub2" id="rowCustom"><span id="rcCustomLabel">Custom Channel</span><span id="rcCustom">0</span></div>
+        <div class="receipt-row eq"><span id="rcAudienceLabel">Annual audience total</span><span id="rcAudience">8,430,000</span></div>
+        <div class="receipt-row sub2"><span>Monthly audience, total &divide; 12</span><span id="rcMonthlyAud">702,500</span></div>
+        <div class="receipt-row op"><span>&times; conversion rate for this scenario</span><span id="rcConv">5%</span></div>
+        <div class="receipt-row eq"><span>Downloads each month</span><span id="rcDownloads">35,125</span></div>
+        <div class="receipt-row op"><span id="rcMultiplyLabel">&times; reward per download (from Per Install tab)</span><span id="rcReward">$2.45</span></div>
+        <div class="receipt-row eq"><span id="rcMonthlyLabel">Revenue share each month</span><span id="rcMonthlyTotal">$86,056</span></div>
+        <div class="receipt-row op"><span>&times; 12 months</span><span>12</span></div>
+        <div class="receipt-row total"><span id="rcTotalLabel">Revenue share each year</span><span id="rcTotal">$1,032,672</span></div>
+        <div class="receipt-row sub" id="rowRevenue"><span>Total revenue share to retailer, per year</span><span id="rcRevenue">$2,065,344</span></div>
+        <div class="receipt-row sub" id="rowRetained"><span>Total retained upside, per year</span><span id="rcRetained">$1,032,672</span></div>
+        <div class="receipt-row sub" id="rowPayment"><span>Total funded rewards, per year</span><span id="rcPayment">$1,032,672</span></div>
+        <div class="receipt-row sub"><span>Paid by developer (CPI &times; downloads), per year</span><span id="rcDevSpend">$2,951,920</span></div>
+
+        <div class="annualized">
+          <span class="annualized-title">Annualized View</span>
+          <div class="annualized-grid">
+            <div>
+              <span class="ann-v" id="annTotal">$1,032,672</span>
+              <span class="ann-k" id="annTotalLabel">Revenue share per year</span>
+            </div>
+            <div>
+              <span class="ann-v" id="annDownloads">421,500</span>
+              <span class="ann-k">Downloads per year, run rate</span>
+            </div>
+          </div>
+          <p class="ann-foot">The yearly download figure is monthly downloads &times; twelve &mdash; it tracks monthly activity, not unique customers.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel industry-impact" id="industryImpactCstore" style="display:none">
+      <div class="step-head"><span class="step-title">C-Store: Further Impact</span></div>
+      <p class="panel-note">Beyond the dollars, mobile gameplay measurably changes how customers show up at the pump.</p>
+
+      <div class="impact-stats-grid">
+        <div class="impact-stat">
+          <span class="impact-stat-v">44%</span>
+          <span class="impact-stat-k">Faster return trips for customers participating in mobile gameplay</span>
+        </div>
+        <div class="impact-stat">
+          <span class="impact-stat-v">33%</span>
+          <span class="impact-stat-k">Increase in site visits among highly engaged members</span>
+        </div>
+        <div class="impact-stat">
+          <span class="impact-stat-v">26%</span>
+          <span class="impact-stat-k">Of customers burn rewards on their very next trip</span>
+        </div>
+        <div class="impact-stat">
+          <span class="impact-stat-v">8%</span>
+          <span class="impact-stat-k">Increase in gallon fill amount tied to reward redemptions</span>
+        </div>
+      </div>
+
+      <div class="step-head impact-calc-head"><span class="step-title">Incremental Fuel Revenue From These Two Lifts</span></div>
+      <p class="panel-note">Two stats above turn directly into dollars: customers return 44% faster, so they fuel up more often &mdash; and each of those fill-ups runs 8% more gallons. Multiply both lifts by your fuel price and it shows up as real incremental revenue, on top of the funded rewards and retained upside above.</p>
+      <div class="grid2">
+        <div class="field">
+          <label>Average Fill-Up <span class="val" id="impactGallonsVal">14 gal</span></label>
+          <input type="number" id="impactAvgGallons" step="1" min="1" value="14">
+        </div>
+        <div class="field">
+          <label>Average Fuel Price <span class="val" id="impactPriceVal">$3.50</span></label>
+          <div class="dollar-input"><input type="number" id="impactFuelPrice" step="0.01" min="0" value="3.50"></div>
+        </div>
+      </div>
+
+      <div class="impact-hero">
+        <div class="impact-hero-tag">Incremental Revenue</div>
+        <div class="impact-hero-label">Incremental Fuel Revenue, Annual</div>
+        <div class="impact-hero-val" id="impactRevenueOut">$0</div>
+        <div class="impact-hero-sub" id="impactRevenueSub">across 0 redemption visits a year, +0.00 gal each</div>
+      </div>
+
+      <button type="button" class="campaign-receipt-head math-toggle" id="impactMathToggle" aria-expanded="false">
+        <span class="step-title">The Math Behind This Number</span>
+        <span class="math-toggle-label">
+          <span class="math-toggle-icon" id="impactMathToggleIcon">+</span><span id="impactMathToggleText">Expand</span>
+        </span>
+      </button>
+      <div id="impactMathDetails" style="display:none">
+        <div class="receipt-row op" style="margin-top:14px;"><span>Downloads this campaign, per year (baseline trips)</span><span id="impactBaseRedemptions">0</span></div>
+        <div class="receipt-row op"><span>&times; 1.44 (44% faster return trips)</span><span>1.44</span></div>
+        <div class="receipt-row eq"><span>Redemption visits per year</span><span id="impactRedemptions">0</span></div>
+        <div class="receipt-row op"><span>Incremental gallons per fill-up (avg fill-up &times; 8%)</span><span id="impactGalPerFillup">1.12</span></div>
+        <div class="receipt-row op"><span>&times; average fuel price</span><span id="impactPriceEcho">$3.50</span></div>
+        <div class="receipt-row eq"><span>Incremental revenue per redemption visit</span><span id="impactRevPerRedemption">$3.92</span></div>
+        <div class="receipt-row op"><span>&times; redemption visits per year</span><span id="impactRedemptionsEcho">0</span></div>
+        <div class="receipt-row total"><span>Incremental fuel revenue per year</span><span id="impactRevTotal">$0</span></div>
+      </div>
+
+      <div class="impact-hero tpv-hero">
+        <div class="impact-hero-tag">Total Program Value</div>
+        <div class="impact-hero-label">Retained Upside + Incremental Revenue, Annual</div>
+        <div class="impact-hero-val" id="cstoreTPV">$0</div>
+        <div class="impact-hero-sub" id="cstoreTPVSub">$0 retained upside + $0 incremental fuel revenue</div>
+      </div>
+    </section>
+
+    <section class="panel industry-impact" id="industryImpactRestaurant" style="display:none">
+      <div class="step-head"><span class="step-title">Restaurant: Further Impact</span></div>
+      <p class="panel-note">From the Checkers &amp; Rally's Connected Rewards&trade; case study &mdash; rewarded gameplay tied to a real in-store reward, aimed at customers who'd gone quiet.</p>
+
+      <div class="impact-stats-grid">
+        <div class="impact-stat">
+          <span class="impact-stat-v">35x</span>
+          <span class="impact-stat-k">Higher redemption rate from game-linked offers vs. standard campaigns</span>
+        </div>
+        <div class="impact-stat">
+          <span class="impact-stat-v">54%</span>
+          <span class="impact-stat-k">Engagement rate among customers lapsed 90+ days</span>
+        </div>
+      </div>
+
+      <div class="step-head impact-calc-head"><span class="step-title">Incremental Revenue From Re-Engaging Lapsed Customers</span></div>
+      <p class="panel-note">Checkers &amp; Rally's targeted customers who hadn't visited in 90+ days with a mobile game tied to a free sandwich, redeemable in-store. 54% of that lapsed group came back. Apply that same re-engagement rate to your downloads and an average ticket, and it turns into incremental visits &mdash; on top of the funded rewards and retained upside above.</p>
+      <div class="field">
+        <label>Average Ticket Size <span class="val" id="impactTicketVal">$9.50</span></label>
+        <div class="dollar-input"><input type="number" id="impactAvgTicket" step="0.25" min="0" value="9.50"></div>
+      </div>
+
+      <div class="impact-hero">
+        <div class="impact-hero-tag">Incremental Revenue</div>
+        <div class="impact-hero-label">Incremental Revenue From Lapsed Re-Engagement, Annual</div>
+        <div class="impact-hero-val" id="restRevenueOut">$0</div>
+        <div class="impact-hero-sub" id="restRevenueSub">across 0 re-engaged visits a year, +$0.00 each</div>
+      </div>
+
+      <button type="button" class="campaign-receipt-head math-toggle" id="restMathToggle" aria-expanded="false">
+        <span class="step-title">The Math Behind This Number</span>
+        <span class="math-toggle-label">
+          <span class="math-toggle-icon" id="restMathToggleIcon">+</span><span id="restMathToggleText">Expand</span>
+        </span>
+      </button>
+      <div id="restMathDetails" style="display:none">
+        <div class="receipt-row op" style="margin-top:14px;"><span>Downloads this campaign, per year (lapsed customers targeted)</span><span id="restBaseDownloads">0</span></div>
+        <div class="receipt-row op"><span>&times; 54% (lapsed customer engagement rate)</span><span>54%</span></div>
+        <div class="receipt-row eq"><span>Re-engaged visits per year</span><span id="restReengaged">0</span></div>
+        <div class="receipt-row op"><span>&times; average ticket size</span><span id="restTicketEcho">$9.50</span></div>
+        <div class="receipt-row total"><span>Incremental revenue per year</span><span id="restRevTotal">$0</span></div>
+      </div>
+      <div class="impact-hero tpv-hero">
+        <div class="impact-hero-tag">Total Program Value</div>
+        <div class="impact-hero-label">Retained Upside + Incremental Revenue, Annual</div>
+        <div class="impact-hero-val" id="restTPV">$0</div>
+        <div class="impact-hero-sub" id="restTPVSub">$0 retained upside + $0 incremental revenue</div>
+      </div>
+      <p class="field-note impact-quote">As Alexis Flores, Director of Loyalty &amp; CRM at Checkers &amp; Rally's, described it, Connected Rewards&trade; &ldquo;drove 54% engagement from our lapsed users.&rdquo;</p>
+    </section>
+
+    <section class="panel industry-impact" id="industryImpactFintech" style="display:none">
+      <div class="step-head"><span class="step-title">Fintech: Further Impact</span></div>
+      <p class="panel-note">From LoyaltyPlay case studies with Klink Finance and ZBD &mdash; rewarded gaming layered into fintech and rewards apps to deepen engagement and unlock new revenue.</p>
+
+      <div class="impact-stats-grid">
+        <div class="impact-stat">
+          <span class="impact-stat-v">200%</span>
+          <span class="impact-stat-k">ARPDAU uplift after adding LoyaltyPlay (Klink Finance)</span>
+        </div>
+        <div class="impact-stat">
+          <span class="impact-stat-v">35%</span>
+          <span class="impact-stat-k">Increase in incremental revenue (Klink Finance)</span>
+        </div>
+        <div class="impact-stat">
+          <span class="impact-stat-v">30%</span>
+          <span class="impact-stat-k">Increase in EU ARPDAU (ZBD)</span>
+        </div>
+        <div class="impact-stat">
+          <span class="impact-stat-v">15%</span>
+          <span class="impact-stat-k">Overall revenue growth (ZBD)</span>
+        </div>
+      </div>
+
+      <div class="step-head impact-calc-head"><span class="step-title">Incremental Revenue From LoyaltyPlay Engagement</span></div>
+      <p class="panel-note">Klink Finance saw a 35% increase in incremental revenue; ZBD saw 15% overall revenue growth. That's a lift on their total organization revenue, not on CPI-driven campaign dollars, so it needs its own number here &mdash; a ballpark of your (or your prospect's) total annual revenue is fine. We're defaulting the uplift to a blended 25% &mdash; still grounded in real results, without leaning on the single best case.</p>
+      <div class="grid2">
+        <div class="field">
+          <label>Your Total Annual Revenue <span class="val" id="fintechOrgRevenueVal">$50,000,000</span></label>
+          <div class="dollar-input"><input type="number" id="impactOrgRevenueFintech" step="1000000" min="0" value="50000000"></div>
+        </div>
+        <div class="field">
+          <label>Revenue Uplift <span class="val" id="fintechUpliftVal">25%</span></label>
+          <input type="number" id="impactUpliftFintech" step="1" min="0" max="500" value="25">
+        </div>
+      </div>
+
+      <div class="impact-hero">
+        <div class="impact-hero-tag">Incremental Revenue</div>
+        <div class="impact-hero-label">Incremental Revenue From LoyaltyPlay Engagement, Annual</div>
+        <div class="impact-hero-val" id="fintechRevenueOut">$0</div>
+        <div class="impact-hero-sub" id="fintechRevenueSub">a 25% lift on $0 in total annual revenue</div>
+      </div>
+
+      <button type="button" class="campaign-receipt-head math-toggle" id="fintechMathToggle" aria-expanded="false">
+        <span class="step-title">The Math Behind This Number</span>
+        <span class="math-toggle-label">
+          <span class="math-toggle-icon" id="fintechMathToggleIcon">+</span><span id="fintechMathToggleText">Expand</span>
+        </span>
+      </button>
+      <div id="fintechMathDetails" style="display:none">
+        <div class="receipt-row op" style="margin-top:14px;"><span>Your total annual revenue</span><span id="fintechBaseRevenue">$0</span></div>
+        <div class="receipt-row op"><span>&times; revenue uplift</span><span id="fintechUpliftEcho">25%</span></div>
+        <div class="receipt-row total"><span>Incremental revenue per year</span><span id="fintechRevTotal">$0</span></div>
+      </div>
+      <div class="impact-hero tpv-hero">
+        <div class="impact-hero-tag">Total Program Value</div>
+        <div class="impact-hero-label">Retained Upside + Incremental Revenue, Annual</div>
+        <div class="impact-hero-val" id="fintechTPV">$0</div>
+        <div class="impact-hero-sub" id="fintechTPVSub">$0 retained upside + $0 incremental revenue</div>
+      </div>
+      <p class="field-note impact-quote">Jure Grahek, SVP Strategic Initiatives at ZBD, called Mistplay &ldquo;a great partner due to their proactivity,&rdquo; particularly on promo strategy.</p>
+    </section>
+
+    <section class="panel industry-impact" id="industryImpactRetail" style="display:none">
+      <div class="step-head"><span class="step-title">Retail: Further Impact</span></div>
+      <p class="panel-note">From LoyaltyPlay case studies with Caveduck and GeoSmile &mdash; plus KAUCHE, whose first month with LoyaltyPlay was its highest-revenue month to date. Rewarded gaming turns browsing and non-paying users into real revenue.</p>
+
+      <div class="impact-stats-grid">
+        <div class="impact-stat">
+          <span class="impact-stat-v">134%</span>
+          <span class="impact-stat-k">Increase in incremental revenue (Caveduck)</span>
+        </div>
+        <div class="impact-stat">
+          <span class="impact-stat-v">66%</span>
+          <span class="impact-stat-k">Boost in ARPDAU (Caveduck)</span>
+        </div>
+        <div class="impact-stat">
+          <span class="impact-stat-v">20%</span>
+          <span class="impact-stat-k">Increase in incremental app revenue (GeoSmile)</span>
+        </div>
+        <div class="impact-stat">
+          <span class="impact-stat-v">1.5x</span>
+          <span class="impact-stat-k">Stronger engagement rate (GeoSmile)</span>
+        </div>
+      </div>
+
+      <div class="step-head impact-calc-head"><span class="step-title">Incremental Revenue From LoyaltyPlay Engagement</span></div>
+      <p class="panel-note">GeoSmile saw a 20% incremental revenue lift; Caveduck saw 134%. Both are lifts on total organization revenue, not on CPI-driven campaign dollars, so it needs its own number here &mdash; a ballpark of your (or your prospect's) total annual revenue is fine. We're defaulting the uplift to a blended 75% &mdash; still grounded in real results, without leaning on the single best case.</p>
+      <div class="grid2">
+        <div class="field">
+          <label>Your Total Annual Revenue <span class="val" id="retailOrgRevenueVal">$50,000,000</span></label>
+          <div class="dollar-input"><input type="number" id="impactOrgRevenueRetail" step="1000000" min="0" value="50000000"></div>
+        </div>
+        <div class="field">
+          <label>Revenue Uplift <span class="val" id="retailUpliftVal">75%</span></label>
+          <input type="number" id="impactUpliftRetail" step="1" min="0" max="500" value="75">
+        </div>
+      </div>
+
+      <div class="impact-hero">
+        <div class="impact-hero-tag">Incremental Revenue</div>
+        <div class="impact-hero-label">Incremental Revenue From LoyaltyPlay Engagement, Annual</div>
+        <div class="impact-hero-val" id="retailRevenueOut">$0</div>
+        <div class="impact-hero-sub" id="retailRevenueSub">a 75% lift on $0 in total annual revenue</div>
+      </div>
+
+      <button type="button" class="campaign-receipt-head math-toggle" id="retailMathToggle" aria-expanded="false">
+        <span class="step-title">The Math Behind This Number</span>
+        <span class="math-toggle-label">
+          <span class="math-toggle-icon" id="retailMathToggleIcon">+</span><span id="retailMathToggleText">Expand</span>
+        </span>
+      </button>
+      <div id="retailMathDetails" style="display:none">
+        <div class="receipt-row op" style="margin-top:14px;"><span>Your total annual revenue</span><span id="retailBaseRevenue">$0</span></div>
+        <div class="receipt-row op"><span>&times; revenue uplift</span><span id="retailUpliftEcho">20%</span></div>
+        <div class="receipt-row total"><span>Incremental revenue per year</span><span id="retailRevTotal">$0</span></div>
+      </div>
+      <div class="impact-hero tpv-hero">
+        <div class="impact-hero-tag">Total Program Value</div>
+        <div class="impact-hero-label">Retained Upside + Incremental Revenue, Annual</div>
+        <div class="impact-hero-val" id="retailTPV">$0</div>
+        <div class="impact-hero-sub" id="retailTPVSub">$0 retained upside + $0 incremental revenue</div>
+      </div>
+      <p class="field-note impact-quote">Youngbin Kim, CEO of Warp Space Corp., said their web campaigns &ldquo;delivered a 134% revenue increase and a 66% lift in ARPDAU.&rdquo;</p>
+    </section>
+
+    <section class="panel industry-impact-comingsoon" id="industryComingSoon" style="display:none">
+      <div class="step-head"><span class="step-title" id="comingSoonTitle">Restaurant: Further Impact</span></div>
+      <p class="panel-note">Behavioral impact data for this vertical is coming soon.</p>
+    </section>
+
+    <p class="campaign-footnote" id="campaignFootnote">Downloads scale with the conversion-rate scenario you pick above and the annual audience you build from SMS, Email, and In-app reach. The reward per download and everything behind it &mdash; revenue share, the install/points split, breakage &mdash; stay exactly what you configured on the Per Install tab. Change anything there and this view updates with it.</p>
+
+    <p class="splits-dive-wrap" id="campaignBreakdownWrap">
+      <button type="button" class="splits-dive-link" id="campaignBreakdownLink">Let's break it down <span class="dive-arrow">&rarr;</span></button>
+    </p>
+
+  </div>
+
+  <p class="legal-footer">Confidential &mdash; &copy; Mistplay 2026</p>
+
+  </div>
+
+</div>
+
+<script>
+  let state = {
+    view: 'splits',
+    cpi: 7.00,
+    revSharePct: 70,
+    pctToInstaller: 50,
+    eqDollars: 1,
+    eqPoints: 100,
+    furthestReachedIndex: 3,
+    stages: [
+      { name: 'Game Install', points: 65 },
+      { name: 'Milestone 1', points: 60 },
+      { name: 'Milestone 2', points: 60 },
+      { name: 'Milestone 3', points: 60 }
+    ],
+    rewardType: 'points',
+    avgGallons: 14,
+    fuelFurthestReachedIndex: 3,
+    fuelStages: [
+      { name: 'Game Install', points: 5 },
+      { name: 'Milestone 1', points: 5 },
+      { name: 'Milestone 2', points: 4 },
+      { name: 'Milestone 3', points: 3.5 }
+    ],
+    moneyFurthestReachedIndex: 3,
+    moneyStages: [
+      { name: 'Game Install', points: 0.65 },
+      { name: 'Milestone 1', points: 0.60 },
+      { name: 'Milestone 2', points: 0.60 },
+      { name: 'Milestone 3', points: 0.60 }
+    ],
+    smsMembers: 50000,
+    smsCampaigns: 24,
+    emailMembers: 150000,
+    emailCampaigns: 24,
+    dau: 10000,
+    customChannelName: 'Custom Channel',
+    customChannelAudience: 0,
+    audienceEstimate: 1000000,
+    audienceExpanded: false,
+    campaignTierIdx: 2,
+    campaignMetric: 'revenue',
+    industry: '',
+    campaignRevealed: false,
+    paymentModel: 'revshare',
+    rewardUsagePct: 60,
+    impactAvgGallons: 14,
+    impactFuelPrice: 3.50,
+    impactAvgTicket: 9.50,
+    impactUpliftFintech: 25,
+    impactUpliftRetail: 75,
+    impactOrgRevenueFintech: 50000000,
+    impactOrgRevenueRetail: 50000000,
+    activePreset: '50'
+  };
+
+  const PRESET_50 = JSON.parse(JSON.stringify(state));
+  const PRESET_100 = {
+    cpi: 7.00, revSharePct: 70, pctToInstaller: 100,
+    eqDollars: 1, eqPoints: 100,
+    furthestReachedIndex: 3,
+    stages: [
+      { name: 'Game Install', points: 150 },
+      { name: 'Milestone 1', points: 140 },
+      { name: 'Milestone 2', points: 100 },
+      { name: 'Milestone 3', points: 100 }
+    ],
+    rewardType: 'points',
+    avgGallons: 14,
+    fuelFurthestReachedIndex: 3,
+    fuelStages: [
+      { name: 'Game Install', points: 10 },
+      { name: 'Milestone 1', points: 10 },
+      { name: 'Milestone 2', points: 8 },
+      { name: 'Milestone 3', points: 7 }
+    ],
+    moneyFurthestReachedIndex: 3,
+    moneyStages: [
+      { name: 'Game Install', points: 1.50 },
+      { name: 'Milestone 1', points: 1.40 },
+      { name: 'Milestone 2', points: 1.00 },
+      { name: 'Milestone 3', points: 1.00 }
+    ]
+  };
+
+  const $ = id => document.getElementById(id);
+  const usd = n => '$' + (Math.abs(n) < 1000 ? n.toFixed(2) : n.toLocaleString(undefined,{minimumFractionDigits:2,maximumFractionDigits:2}));
+  const usdWhole = n => '$' + Math.round(n).toLocaleString();
+  const pct1 = n => n.toFixed(1) + '%';
+
+  const CAMPAIGN_TIERS = [
+    { name: 'Pilot Run', short: 'Pilot', conv: 0.01 },
+    { name: 'Conservative', short: 'Conservative', conv: 0.02 },
+    { name: 'Benchmark', short: 'Benchmark', conv: 0.05 },
+    { name: 'Goal', short: 'Goal', conv: 0.07 },
+    { name: 'Breakout', short: 'Breakout', conv: 0.10 }
+  ];
+
+  const CAMPAIGN_METRICS = {
+    revenue: {
+      heroLabel: 'What Flows to the Retailer Before Any Split',
+      chipLabel: 'Revenue Share per Download',
+      monthlyLabel: 'Revenue share each month',
+      multiplyLabel: '\u00D7 revenue share per download (from Per Install tab)',
+      totalLabel: 'Revenue share each year',
+      annualLabel: 'Revenue share per year',
+      perInstall: c => c.revShare
+    },
+    payment: {
+      heroLabel: 'What Customers Actually Get Paid in Rewards',
+      chipLabel: 'Funded Reward per Download',
+      monthlyLabel: 'Funded rewards each month',
+      multiplyLabel: '\u00D7 funded reward per download (from Per Install tab)',
+      totalLabel: 'Funded rewards each year',
+      annualLabel: 'Funded rewards per year',
+      perInstall: c => c.totalPaid
+    },
+    retained: {
+      heroLabel: 'What You Keep After Funding Rewards + Breakage',
+      chipLabel: 'Retained Upside per Download',
+      monthlyLabel: 'Retained upside each month',
+      multiplyLabel: '\u00D7 retained upside per download (guaranteed split + breakage)',
+      totalLabel: 'Retained upside each year',
+      annualLabel: 'Retained upside per year',
+      perInstall: c => c.totalKept
+    }
+  };
+
+  const CONSERVATIVE_DAYS_PER_YEAR = 250;
+
+  function computeCampaign(c) {
+    const tier = CAMPAIGN_TIERS[state.campaignTierIdx];
+    const metric = CAMPAIGN_METRICS[state.campaignMetric] || CAMPAIGN_METRICS.payment;
+    const perInstallValue = metric.perInstall(c);
+
+    const estimate = Math.max(0, Number(state.audienceEstimate) || 0);
+    const audSms = Math.max(0, Number(state.smsMembers) || 0) * Math.max(0, Number(state.smsCampaigns) || 0);
+    const audEmail = Math.max(0, Number(state.emailMembers) || 0) * Math.max(0, Number(state.emailCampaigns) || 0);
+    const audInApp = Math.max(0, Number(state.dau) || 0) * CONSERVATIVE_DAYS_PER_YEAR;
+    const audCustom = Math.max(0, Number(state.customChannelAudience) || 0);
+    const channelTotal = audSms + audEmail + audInApp + audCustom;
+    const totalAnnualAudience = state.audienceExpanded ? channelTotal : estimate;
+    const monthlyAudience = totalAnnualAudience / 12;
+
+    const downloadsMonthly = monthlyAudience * tier.conv;
+    const downloadsYearly = downloadsMonthly * 12;
+
+    const monthlyValue = downloadsMonthly * perInstallValue;
+    const yearlyValue = monthlyValue * 12;
+
+    const yearlyRevenue = downloadsYearly * c.revShare;
+    const yearlyPayment = downloadsYearly * c.totalPaid;
+    const yearlyRetained = downloadsYearly * c.totalKept;
+    const yearlyDevSpend = downloadsYearly * (c.paymentModel === 'ratecard' ? c.revShare : state.cpi);
+
+    return {
+      tier, metric, perInstallValue, estimate, channelTotal,
+      audSms, audEmail, audInApp, audCustom, totalAnnualAudience, monthlyAudience,
+      downloadsMonthly, downloadsYearly, monthlyValue, yearlyValue,
+      yearlyRevenue, yearlyPayment, yearlyRetained, yearlyDevSpend
+    };
+  }
+
+  function activeStages() {
+    if (state.rewardType === 'fuel') return state.fuelStages;
+    if (state.rewardType === 'moneyback') return state.moneyStages;
+    return state.stages;
+  }
+  function activeFurthest() {
+    if (state.paymentModel === 'ratecard') return state.furthestReachedIndex;
+    if (state.rewardType === 'fuel') return state.fuelFurthestReachedIndex;
+    if (state.rewardType === 'moneyback') return state.moneyFurthestReachedIndex;
+    return state.furthestReachedIndex;
+  }
+  function setActiveFurthest(v) {
+    if (state.paymentModel === 'ratecard') { state.furthestReachedIndex = v; return; }
+    if (state.rewardType === 'fuel') state.fuelFurthestReachedIndex = v;
+    else if (state.rewardType === 'moneyback') state.moneyFurthestReachedIndex = v;
+    else state.furthestReachedIndex = v;
+  }
+  function resetForModelEntry(model) {
+    if (model === 'ratecard') {
+      state.rewardType = 'moneyback';
+      state.furthestReachedIndex = -1;
+      state.fuelFurthestReachedIndex = -1;
+      state.moneyFurthestReachedIndex = -1;
+    } else {
+      state.rewardType = 'points';
+      state.furthestReachedIndex = state.stages.length - 1;
+      state.fuelFurthestReachedIndex = state.fuelStages.length - 1;
+      state.moneyFurthestReachedIndex = state.moneyStages.length - 1;
+    }
+  }
+  function unitValue() {
+    if (state.rewardType === 'fuel') return state.avgGallons * 0.01;
+    if (state.rewardType === 'moneyback') return 1;
+    return state.eqPoints > 0 ? state.eqDollars / state.eqPoints : 0;
+  }
+  function unitStep() {
+    if (state.rewardType === 'fuel') return 0.1;
+    if (state.rewardType === 'moneyback') return 0.01;
+    return 1;
+  }
+
+  function compute(s) {
+    const revShare = s.cpi * s.revSharePct / 100;
+    const rewardToInstaller = revShare * s.pctToInstaller / 100;
+    const uVal = unitValue();
+    const stages = activeStages();
+    const furthest = activeFurthest();
+    const isRC = s.paymentModel === 'ratecard';
+    const installerPctFrac = Math.max(0, Math.min(100, Number(s.pctToInstaller) || 0)) / 100;
+
+    const usagePct = Math.max(0, Math.min(100, Number(s.rewardUsagePct) || 0)) / 100;
+    const stagesComputed = stages.map((st, i) => {
+      const points = Math.max(0, Number(st.points || 0));
+      const value = points * uVal;
+      const reached = i <= furthest;
+      let paid, breakage, retained, given;
+      if (isRC) {
+        retained = reached ? value * (1 - installerPctFrac) : 0;
+        given = reached ? value * installerPctFrac : 0;
+        // Final paid/breakage per stage shown for backward-compatible totals; the real
+        // usage step happens once against the summed given-total below.
+        paid = given * usagePct;
+        breakage = given * (1 - usagePct);
+      } else {
+        retained = 0;
+        given = 0;
+        paid = reached ? value : 0;
+        breakage = reached ? 0 : value;
+      }
+      return { ...st, points, value, reached, paid, breakage, retained, given };
+    });
+
+    const totalAllocPoints = stagesComputed.reduce((a, st) => a + st.points, 0);
+    const totalPoints = isRC ? totalAllocPoints : (uVal > 0 ? rewardToInstaller / uVal : 0);
+    const remainingPoints = totalPoints - totalAllocPoints;
+    const roundForDisplay = v => {
+      if (s.rewardType === 'fuel') return Math.round(v * 10) / 10;
+      if (s.rewardType === 'moneyback') return Math.round(v * 100) / 100;
+      return Math.round(v);
+    };
+    const isOverAllocated = roundForDisplay(totalAllocPoints) > roundForDisplay(totalPoints);
+    const pointsGivenSoFar = stagesComputed.reduce((a, st) => a + (st.reached ? st.points : 0), 0);
+
+    // Step 1: sum what was retained vs. given across every reached stage.
+    const retainedSum = stagesComputed.reduce((a, st) => a + st.retained, 0);
+    const givenSum = stagesComputed.reduce((a, st) => a + st.given, 0);
+    // Step 2: apply the usage rate once to the given total; the rest reverts as breakage.
+    const paidToInstaller = givenSum * usagePct;
+    const expiredFromGiven = givenSum - paidToInstaller;
+
+    let keptGuaranteed, totalBreakage, totalPaid, totalReachedValue;
+    if (isRC) {
+      keptGuaranteed = retainedSum;
+      totalBreakage = expiredFromGiven;
+      totalPaid = paidToInstaller;
+      totalReachedValue = stagesComputed.reduce((a, st) => a + (st.reached ? st.value : 0), 0);
+    } else {
+      keptGuaranteed = revShare - rewardToInstaller;
+      totalBreakage = stagesComputed.reduce((a, st) => a + st.breakage, 0);
+      totalPaid = stagesComputed.reduce((a, st) => a + st.paid, 0);
+    }
+    const totalKept = keptGuaranteed + totalBreakage;
+    const effMarginOfCPI = isRC
+      ? (totalReachedValue > 0 ? (totalKept / totalReachedValue) * 100 : 0)
+      : (s.cpi > 0 ? (totalKept / s.cpi) * 100 : 0);
+    const paidPctOfPool = isRC
+      ? (totalReachedValue > 0 ? (totalPaid / totalReachedValue) * 100 : 0)
+      : (rewardToInstaller > 0 ? (totalPaid / rewardToInstaller) * 100 : 0);
+    const revShareOut = isRC ? (totalPaid + totalKept) : revShare;
+
+    return {
+      revShare: revShareOut, rewardToInstaller, keptGuaranteed, totalPoints, unitVal: uVal,
+      stagesComputed, totalAllocPoints, remainingPoints, isOverAllocated,
+      totalPaid, totalBreakage, pointsGivenSoFar, retainedSum, givenSum, expiredFromGiven,
+      totalKept, effMarginOfCPI, paidPctOfPool, paymentModel: s.paymentModel
+    };
+  }
+
+  function buildStageRows(c) {
+    const container = $('stageRows');
+    container.innerHTML = '';
+    const stages = activeStages();
+    const isRC = state.paymentModel === 'ratecard';
+    stages.forEach((st, i) => {
+      const row = document.createElement('div');
+      row.className = 'stage-row';
+      const computed = c.stagesComputed[i];
+      const leftVal = isRC ? computed.retained : computed.value;
+      const rightVal = isRC ? computed.given : computed.breakage;
+      row.innerHTML = `
+        <input type="text" data-i="${i}" data-field="name" value="${st.name}">
+        <input type="number" step="0.1" min="0" data-i="${i}" data-field="points" value="${st.points}">
+        <label class="reach-toggle">
+          <input type="checkbox" id="reach-${i}" data-i="${i}" data-field="reached" ${computed.reached ? 'checked' : ''}>
+          <span class="reach-label ${computed.reached ? 'on' : 'off'}" id="reach-label-${i}">${computed.reached ? 'Reached' : 'Not reached'}</span>
+        </label>
+        <div class="mono-cell ${isRC ? 'slate' : 'orange'}" id="stage-value-${i}">${usd(leftVal)}</div>
+        <div class="mono-cell ${isRC ? 'orange' : 'slate'}" id="stage-breakage-${i}">${usd(rightVal)}</div>
+        <button class="rm-btn" data-i="${i}" data-action="remove">&times;</button>
+      `;
+      container.appendChild(row);
+    });
+
+    container.querySelectorAll('input[type="text"], input[type="number"]').forEach(inp => {
+      inp.addEventListener('input', e => {
+        const i = Number(e.target.dataset.i);
+        const field = e.target.dataset.field;
+        let val = e.target.value;
+        if (field === 'points') val = Math.max(0, Number(val) || 0);
+        activeStages()[i][field] = val;
+        state.campaignRevealed = false;
+        render(false);
+      });
+    });
+    container.querySelectorAll('input[type="checkbox"]').forEach(box => {
+      box.addEventListener('change', e => {
+        const i = Number(e.target.dataset.i);
+        setActiveFurthest(e.target.checked ? i : i - 1);
+        state.campaignRevealed = false;
+        render(false);
+      });
+    });
+    container.querySelectorAll('[data-action="remove"]').forEach(btn => {
+      btn.addEventListener('click', e => {
+        const i = Number(e.target.dataset.i);
+        const stages = activeStages();
+        if (stages.length > 1) {
+          let furthest = activeFurthest();
+          if (i <= furthest) furthest -= 1;
+          stages.splice(i, 1);
+          setActiveFurthest(Math.min(furthest, stages.length - 1));
+          state.campaignRevealed = false;
+          render(true);
+        }
+      });
+    });
+  }
+
+  function updateStageComputedOnly(c) {
+    const isRC = state.paymentModel === 'ratecard';
+    activeStages().forEach((st, i) => {
+      const computed = c.stagesComputed[i];
+      const box = $('reach-' + i);
+      const label = $('reach-label-' + i);
+      const val = $('stage-value-' + i);
+      const brk = $('stage-breakage-' + i);
+      if (box) box.checked = computed.reached;
+      if (label) {
+        label.textContent = computed.reached ? 'Reached' : 'Not reached';
+        label.className = 'reach-label ' + (computed.reached ? 'on' : 'off');
+      }
+      if (val) val.textContent = usd(isRC ? computed.retained : computed.value);
+      if (brk) brk.textContent = usd(isRC ? computed.given : computed.breakage);
+    });
+  }
+
+  function renderStageRows(c, force) {
+    const container = $('stageRows');
+    const rowCountMatches = container.children.length === activeStages().length;
+    if (force || !rowCountMatches) {
+      buildStageRows(c);
+    } else {
+      updateStageComputedOnly(c);
+    }
+  }
+
+  function setFlowbar(el, segments) {
+    el.innerHTML = '';
+    segments.forEach(seg => {
+      const div = document.createElement('div');
+      div.className = 'seg ' + seg.cls;
+      div.style.width = Math.max(seg.width, 0) + '%';
+      div.textContent = seg.width > 10 ? seg.label : '';
+      el.appendChild(div);
+    });
+  }
+
+  function render(forceStageRebuild) {
+    const c = compute(state);
+
+    $('cpiVal').textContent = usd(state.cpi);
+    $('revShareVal').textContent = state.revSharePct + '%';
+    $('pctInstallerVal').textContent = state.pctToInstaller + '%';
+
+    const isRateCard = state.paymentModel === 'ratecard';
+    ['modelTabRevshare', 'modelTabRevshare2'].forEach(id => {
+      $(id).classList.toggle('is-active', !isRateCard);
+      $(id).setAttribute('aria-selected', String(!isRateCard));
+    });
+    ['modelTabRatecard', 'modelTabRatecard2'].forEach(id => {
+      $(id).classList.toggle('is-active', isRateCard);
+      $(id).setAttribute('aria-selected', String(isRateCard));
+    });
+
+    if (isRateCard) {
+      $('perInstallSubCopy').textContent = "The granular, per-install breakdown \u2014 points, fuel rewards, or money back, spread across a milestone schedule. The split and usage rate below are shared with the Full Campaign tab; edit them anywhere and it updates everywhere.";
+      $('cpiLabelText').textContent = 'Rate Per Milestone';
+      $('cpiFieldNote').textContent = "This is what we pay XYZ for each milestone a player reaches \u2014 nothing is owed for levels that aren't hit.";
+      $('revShareLabelText').textContent = 'Rate We Pay XYZ';
+      $('flowLegendRevShare').textContent = 'Rate paid to XYZ';
+      $('revShareOutLabel').textContent = 'Rate Paid to XYZ';
+      $('revShareOutSub').textContent = "this is what XYZ earns for each milestone reached \u2014 nothing is paid for levels that aren't hit, so there's no leftover to claim back";
+      $('pctInstallerLabelText').textContent = '% XYZ Passes to Installer';
+      $('scheduleNote').textContent = "These are sample values Mistplay pays to the retailer as each user progresses through an attributable game.";
+      $('sumBreakageLabel').textContent = 'Breakage (rewards expired unused)';
+      $('sumGuaranteedLabel').textContent = 'Kept From Split (leftover)';
+    } else {
+      $('perInstallSubCopy').textContent = "The granular, per-install breakdown \u2014 points, fuel rewards, or money back, spread across a milestone schedule. The deal terms below are shared with the Splits and Full Campaign tabs; edit them anywhere and it updates everywhere.";
+      $('cpiLabelText').textContent = 'Cost Per Install (CPI)';
+      $('cpiFieldNote').textContent = "This is all we'll get from the developer for each install \u2014 the entire pool everything below is split from.";
+      $('revShareLabelText').textContent = 'Retailer Revenue Share';
+      $('flowLegendRevShare').textContent = 'Revenue share to retailer';
+      $('revShareOutLabel').textContent = 'Revenue Share to Retailer';
+      $('revShareOutSub').textContent = 'this is the full payment to the retailer for this install \u2014 no more money comes from the game developer for this install past this point';
+      $('pctInstallerLabelText').textContent = '% of Revenue Share Passed to Installer';
+      $('scheduleNote').textContent = 'This models one install. Check off how far it got \u2014 anything past that point never gets claimed, and becomes breakage kept by the rewards partner instead of paid out.';
+      $('sumBreakageLabel').textContent = 'Breakage (stages not reached)';
+      $('sumGuaranteedLabel').textContent = 'Guaranteed Kept (from split)';
+    }
+    $('dealTermsStripInstall').style.display = isRateCard ? 'none' : '';
+    $('dealTermsStripCampaign').style.display = isRateCard ? 'none' : '';
+    $('rateCardSplitPanel').style.display = isRateCard ? '' : 'none';
+    $('expirationPanel').style.display = 'none';
+    $('rateCardDiveWrap').style.display = isRateCard ? '' : 'none';
+    $('expirationPanelCampaign').style.display = isRateCard ? '' : 'none';
+    $('rewardBudgetReadouts').style.display = isRateCard ? 'none' : '';
+    $('allocStatus').style.display = isRateCard ? 'none' : '';
+    $('normalizeBtn').style.display = isRateCard ? 'none' : '';
+
+    const scheduleSection = $('scheduleSection');
+    const rewardsSection = $('rewardsSection');
+    const economicsSection = $('economicsSection');
+    const expirationPanelEl = $('expirationPanel');
+    const rateCardDiveWrapEl = $('rateCardDiveWrap');
+    const toggleWrap = $('rewardTypeToggleWrap');
+    rewardsSection.style.display = isRateCard ? 'none' : '';
+    economicsSection.style.display = isRateCard ? 'none' : '';
+    if (isRateCard) {
+      economicsSection.parentNode.insertBefore(scheduleSection, economicsSection);
+      economicsSection.parentNode.insertBefore(rateCardDiveWrapEl, economicsSection);
+      economicsSection.parentNode.insertBefore(expirationPanelEl, economicsSection);
+      economicsSection.parentNode.insertBefore(rewardsSection, economicsSection);
+      if (toggleWrap.parentElement !== $('scheduleToggleSlot')) $('scheduleToggleSlot').appendChild(toggleWrap);
+      $('scheduleStepNum').textContent = '01';
+      $('rewardsStepNum').textContent = '02';
+    } else {
+      economicsSection.parentNode.insertBefore(rewardsSection, economicsSection);
+      economicsSection.parentNode.insertBefore(scheduleSection, economicsSection);
+      economicsSection.parentNode.insertBefore(rateCardDiveWrapEl, economicsSection);
+      if (toggleWrap.parentElement !== $('rewardsToggleSlot')) $('rewardsToggleSlot').appendChild(toggleWrap);
+      $('rewardsStepNum').textContent = '01';
+      $('scheduleStepNum').textContent = '02';
+    }
+    $('usageRateVal').textContent = state.rewardUsagePct + '%';
+    $('usageRateValCampaign').textContent = state.rewardUsagePct + '%';
+    [['rewardUsagePct', 'rewardUsagePct'], ['rewardUsagePctCampaign', 'rewardUsagePct']].forEach(([id, key]) => {
+      const el = $(id);
+      if (el && document.activeElement !== el) el.value = state[key];
+    });
+    $('pctInstallerRCVal').textContent = state.pctToInstaller + '%';
+
+    $('viewTabSplits').textContent = isRateCard ? 'Rate Card' : 'Splits';
+    $('viewTabInstall').style.display = isRateCard ? 'none' : '';
+    const splitsTabTargetsInstall = isRateCard && state.view === 'perInstall';
+    const splitsTabActive = isRateCard ? splitsTabTargetsInstall : state.view === 'splits';
+    $('viewTabSplits').classList.toggle('is-active', splitsTabActive);
+    $('viewTabSplits').setAttribute('aria-selected', String(splitsTabActive));
+
+    [
+      ['cpi', 'cpi'], ['cpiCampaign', 'cpi'], ['cpiInstall', 'cpi'],
+      ['revSharePct', 'revSharePct'], ['revShareCampaign', 'revSharePct'], ['revShareInstall', 'revSharePct'],
+      ['pctToInstaller', 'pctToInstaller'], ['pctInstallerCampaign', 'pctToInstaller'], ['pctInstallerInstall', 'pctToInstaller'], ['pctInstallerRC', 'pctToInstaller'],
+      ['eqDollars', 'eqDollars'], ['eqDollarsInline', 'eqDollars'],
+      ['eqPoints', 'eqPoints'], ['eqPointsInline', 'eqPoints'],
+      ['avgGallons', 'avgGallons'], ['avgGallonsInline', 'avgGallons']
+    ].forEach(([id, key]) => {
+      const el = $(id);
+      if (el && document.activeElement !== el) el.value = state[key];
+    });
+
+    $('rewardTypePoints').checked = state.rewardType === 'points';
+    $('rewardTypeFuel').checked = state.rewardType === 'fuel';
+    $('rewardTypeMoney').checked = state.rewardType === 'moneyback';
+    $('pointsEqBlock').style.display = (state.rewardType === 'points' && !isRateCard) ? '' : 'none';
+    $('fuelBlock').style.display = (state.rewardType === 'fuel' && !isRateCard) ? '' : 'none';
+    $('moneyBlock').style.display = state.rewardType === 'moneyback' ? '' : 'none';
+    $('pointsEqBlockInline').style.display = (isRateCard && state.rewardType === 'points') ? '' : 'none';
+    $('fuelBlockInline').style.display = (isRateCard && state.rewardType === 'fuel') ? '' : 'none';
+
+    const pointRate = state.eqPoints > 0 ? state.eqDollars / state.eqPoints : 0;
+    $('eqRateNote').textContent = '= $' + pointRate.toFixed(5) + ' per point';
+    $('eqRateNoteInline').textContent = '= $' + pointRate.toFixed(5) + ' per point';
+    const fuelRate = state.avgGallons * 0.01;
+    $('avgGallonsVal').textContent = state.avgGallons + ' gal';
+    $('avgGallonsValInline').textContent = state.avgGallons + ' gal';
+    $('fuelRateNote').textContent = '= $' + fuelRate.toFixed(5) + ' payment per 1\u00A2 off per gallon';
+    $('fuelRateNoteInline').textContent = '= $' + fuelRate.toFixed(5) + ' payment per 1\u00A2 off per gallon';
+
+    if (state.rewardType === 'fuel') {
+      $('unitsIssuedLabel').textContent = 'Total Fuel Reward Budget';
+      $('pointsOut').innerHTML = c.totalPoints.toFixed(2) + '\u00A2/gal';
+      $('unitsIssuedSub').textContent = 'the full budget for this download or install \u2014 not given all at once';
+      $('colHeaderUnits').textContent = '\u00A2 Off/Gal';
+      $('tallyPointsLabel').textContent = '\u00A2 Off/Gal Given So Far';
+    } else if (state.rewardType === 'moneyback') {
+      $('unitsIssuedLabel').textContent = 'Total Money-Back Budget';
+      $('pointsOut').textContent = usd(c.totalPoints);
+      $('unitsIssuedSub').textContent = 'the full budget for this download or install \u2014 not paid all at once';
+      $('colHeaderUnits').textContent = '$';
+      $('tallyPointsLabel').textContent = 'Money Back Given So Far';
+    } else {
+      $('unitsIssuedLabel').textContent = 'Total Points Budget';
+      $('pointsOut').textContent = Math.round(c.totalPoints);
+      $('unitsIssuedSub').textContent = 'the full budget for this download or install \u2014 not paid all at once';
+      $('colHeaderUnits').textContent = 'Points';
+      $('tallyPointsLabel').textContent = 'Points Given So Far';
+    }
+    $('colHeaderValue').textContent = isRateCard ? 'Retained' : 'Value';
+    $('colHeaderBreakage').textContent = isRateCard ? 'Given' : 'Breakage';
+
+    $('revShareOut').textContent = usd(c.revShare);
+    $('rewardOut').textContent = usd(c.rewardToInstaller);
+    $('keptGuaranteedOut').textContent = usd(c.keptGuaranteed);
+
+    const otherPct = 100 - state.revSharePct;
+    setFlowbar($('flowbar1'), [
+      { width: state.revSharePct, cls: 'orange', label: (isRateCard ? 'Rate paid to XYZ ' : 'Revenue share ') + state.revSharePct + '%' },
+      { width: otherPct, cls: 'muted', label: 'Retained upstream ' + otherPct + '%' }
+    ]);
+    setFlowbar($('flowbar2'), [
+      { width: state.pctToInstaller, cls: 'orange', label: 'Installer ' + state.pctToInstaller + '%' },
+      { width: 100 - state.pctToInstaller, cls: 'slate', label: 'Rewards partner ' + (100 - state.pctToInstaller) + '%' }
+    ]);
+
+    renderStageRows(c, !!forceStageRebuild);
+
+    const allocStatus = $('allocStatus');
+    const unitWord = state.rewardType === 'fuel' ? '\u00A2/gal' : (state.rewardType === 'moneyback' ? '' : 'points');
+    const fmt = v => {
+      if (state.rewardType === 'fuel') return v.toFixed(1);
+      if (state.rewardType === 'moneyback') return usd(v);
+      return String(Math.round(v));
+    };
+    const totalPointsRounded = fmt(c.totalPoints);
+    const allocRounded = fmt(c.totalAllocPoints);
+    if (c.isOverAllocated) {
+      const overBy = fmt(-c.remainingPoints);
+      allocStatus.textContent = 'Over-allocated by ' + overBy + (unitWord ? ' ' + unitWord : '') + ' (' + allocRounded + ' / ' + totalPointsRounded + ' issued) \u2014 reduce a stage below';
+      allocStatus.className = 'alloc-status bad';
+    } else {
+      const unassigned = fmt(c.remainingPoints);
+      allocStatus.textContent = 'Allocated: ' + allocRounded + ' / ' + totalPointsRounded + (unitWord ? ' ' + unitWord : '') + (c.remainingPoints > 0.005 ? ' (' + unassigned + ' unassigned)' : '');
+      allocStatus.className = 'alloc-status ok';
+    }
+
+    $('sumGuaranteed').textContent = usd(c.keptGuaranteed);
+    $('sumBreakage').textContent = usd(c.totalBreakage);
+    $('sumTotalKept').textContent = usd(c.totalKept);
+    $('sumTotalKeptNote').textContent = pct1(c.effMarginOfCPI) + (state.paymentModel === 'ratecard' ? ' of the milestone rate' : ' of CPI');
+    $('sumPaid').textContent = usd(c.totalPaid);
+    $('sumPaidNote').textContent = pct1(c.paidPctOfPool) + ' of reward pool';
+
+    $('tallyPoints').textContent = state.rewardType === 'fuel'
+      ? c.pointsGivenSoFar.toFixed(1) + '\u00A2/gal'
+      : state.rewardType === 'moneyback'
+      ? usd(c.pointsGivenSoFar)
+      : Math.round(c.pointsGivenSoFar) + ' pts';
+    if (isRateCard) {
+      $('tallyValueLabel').textContent = 'Given to Installer So Far';
+      $('tallyValue').textContent = usd(c.givenSum);
+      $('tallyRetainedItem').style.display = '';
+      $('tallyRetained').textContent = usd(c.retainedSum);
+      $('rcExpirationBreakdown').style.display = '';
+      if (state.rewardType === 'moneyback') {
+        $('rcAvailableNativeRow').style.display = 'none';
+        $('rcAvailableDollarRow').classList.add('rc-prominent');
+        $('rcAvailableDollarLabel').textContent = 'Available to be redeemed';
+        $('rcAvailableDollar').textContent = usd(c.givenSum);
+      } else {
+        $('rcAvailableNativeRow').style.display = '';
+        $('rcAvailableDollarRow').classList.remove('rc-prominent');
+        $('rcAvailableDollarLabel').textContent = 'Dollar equivalent';
+        const nativeAmount = c.unitVal > 0 ? c.givenSum / c.unitVal : 0;
+        $('rcAvailableNative').textContent = state.rewardType === 'fuel'
+          ? nativeAmount.toFixed(1) + '\u00A2 off per gallon'
+          : Math.round(nativeAmount).toLocaleString() + ' points';
+        $('rcAvailableDollar').textContent = usd(c.givenSum);
+      }
+    } else {
+      $('tallyValueLabel').textContent = 'Worth to This Customer';
+      $('tallyValue').textContent = usd(c.totalPaid);
+      $('tallyRetainedItem').style.display = 'none';
+      $('rcExpirationBreakdown').style.display = 'none';
+    }
+
+    renderCampaign(c);
+  }
+
+  let countUpRaf = null;
+  const hasRaf = typeof window.requestAnimationFrame === 'function' && typeof window.cancelAnimationFrame === 'function';
+  const prefersReducedMotion = !hasRaf || (typeof window.matchMedia === 'function' &&
+    window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+  let lastBigNum = null;
+
+  function animateBigNum(el, target) {
+    if (prefersReducedMotion || lastBigNum === null) {
+      el.textContent = usdWhole(target);
+      lastBigNum = target;
+      return;
+    }
+    const from = lastBigNum;
+    if (Math.abs(from - target) < 0.005) { el.textContent = usdWhole(target); lastBigNum = target; return; }
+    const start = performance.now();
+    const dur = 500;
+    cancelAnimationFrame(countUpRaf);
+    const tick = now => {
+      const t = Math.min(1, (now - start) / dur);
+      const eased = 1 - Math.pow(1 - t, 3);
+      el.textContent = usdWhole(from + (target - from) * eased);
+      if (t < 1) countUpRaf = requestAnimationFrame(tick);
+      else lastBigNum = target;
+    };
+    countUpRaf = requestAnimationFrame(tick);
+  }
+
+  function renderCampaign(c) {
+    const cc = computeCampaign(c);
+    const m = cc.metric;
+    const inAppDaysLabel = 'In app, daily active users \u00D7 ~' + CONSERVATIVE_DAYS_PER_YEAR + ' conservative days';
+
+    $('chTierName').textContent = cc.tier.name;
+    $('chHeroLabel').textContent = m.heroLabel;
+    animateBigNum($('chBigNum'), cc.yearlyValue);
+    $('chBigSub').textContent = 'per year for your brand at this scenario';
+
+    $('chConv').textContent = pct1(cc.tier.conv * 100);
+    $('chChipLabel').textContent = m.chipLabel;
+    $('chReward').textContent = usd(cc.perInstallValue);
+    const linkedTabName = state.paymentModel === 'ratecard' ? 'Rate Card' : 'Per Install';
+    $('chRewardChipNote').textContent = 'linked to the ' + linkedTabName + ' tab \u2192';
+    $('chRewardChip').setAttribute('title', 'Set on the ' + linkedTabName + ' tab');
+    $('chDownloads').textContent = Math.round(cc.downloadsMonthly).toLocaleString();
+    $('chMonthlyLabel').textContent = m.monthlyLabel;
+    $('chMonthly').textContent = usdWhole(cc.monthlyValue);
+
+    $('audienceVal').textContent = Math.round(cc.totalAnnualAudience).toLocaleString();
+    $('audSmsOut').textContent = Math.round(cc.audSms).toLocaleString();
+    $('audEmailOut').textContent = Math.round(cc.audEmail).toLocaleString();
+    $('audInAppOut').textContent = Math.round(cc.audInApp).toLocaleString();
+
+    $('simpleAudienceField').style.display = state.audienceExpanded ? 'none' : '';
+    $('audienceDetail').style.display = state.audienceExpanded ? '' : 'none';
+    $('channelNote').style.display = state.audienceExpanded ? '' : 'none';
+    $('audienceExpandIcon').textContent = state.audienceExpanded ? '\u2212' : '+';
+    $('audienceExpandLabel').textContent = state.audienceExpanded
+      ? 'Just use a ballpark instead'
+      : 'Know your numbers by channel? Break it down instead';
+
+    $('rowEstimate').style.display = state.audienceExpanded ? 'none' : '';
+    $('rowSms').style.display = state.audienceExpanded ? '' : 'none';
+    $('rowEmail').style.display = state.audienceExpanded ? '' : 'none';
+    $('rowInApp').style.display = state.audienceExpanded ? '' : 'none';
+    $('rowCustom').style.display = state.audienceExpanded ? '' : 'none';
+    $('rcAudienceLabel').textContent = state.audienceExpanded ? 'Annual audience total' : 'Annual audience (from your estimate)';
+    $('rcEstimate').textContent = Math.round(cc.estimate).toLocaleString();
+
+    $('rcSms').textContent = Math.round(cc.audSms).toLocaleString();
+    $('rcEmail').textContent = Math.round(cc.audEmail).toLocaleString();
+    $('rcInAppLabel').textContent = inAppDaysLabel;
+    $('rcInApp').textContent = Math.round(cc.audInApp).toLocaleString();
+    $('rcCustomLabel').textContent = state.customChannelName || 'Custom Channel';
+    $('rcCustom').textContent = Math.round(cc.audCustom).toLocaleString();
+    $('rcAudience').textContent = Math.round(cc.totalAnnualAudience).toLocaleString();
+    $('rcMonthlyAud').textContent = Math.round(cc.monthlyAudience).toLocaleString();
+    $('rcConv').textContent = pct1(cc.tier.conv * 100);
+    $('rcDownloads').textContent = Math.round(cc.downloadsMonthly).toLocaleString();
+    $('rcMultiplyLabel').textContent = m.multiplyLabel;
+    $('rcReward').textContent = usd(cc.perInstallValue);
+    $('rcMonthlyLabel').textContent = m.monthlyLabel;
+    $('rcMonthlyTotal').textContent = usdWhole(cc.monthlyValue);
+    $('rcTotalLabel').textContent = m.totalLabel;
+    $('rcTotal').textContent = usdWhole(cc.yearlyValue);
+    $('rcRevenue').textContent = usdWhole(cc.yearlyRevenue);
+    $('rcPayment').textContent = usdWhole(cc.yearlyPayment);
+    $('rcRetained').textContent = usdWhole(cc.yearlyRetained);
+    $('rcDevSpend').textContent = usdWhole(cc.yearlyDevSpend);
+
+    $('annTotalLabel').textContent = m.annualLabel;
+    $('annTotal').textContent = usdWhole(cc.yearlyValue);
+    $('annDownloads').textContent = Math.round(cc.downloadsYearly).toLocaleString();
+
+    const isRC = state.paymentModel === 'ratecard';
+    if (isRC && state.campaignMetric === 'revenue') { state.campaignMetric = 'payment'; }
+    $('metricRevenue').style.display = isRC ? 'none' : '';
+    $('rowRevenue').style.display = isRC ? 'none' : '';
+    $('campaignSubCopy').textContent = isRC
+      ? "The same per-install economics from the tab above, scaled across an entire campaign. The split and usage rate are synced between both tabs \u2014 edit them here or there. Everything else, including the reward per download, stays locked to whatever Section 3 on the Rate Card tab works out to."
+      : 'The same per-install economics from the tab above, scaled across an entire campaign. CPI is synced between both tabs \u2014 edit it here or there. Everything else, including the reward per download, stays locked to whatever Section 3 on the Per Install tab works out to.';
+    $('campaignFootnote').textContent = isRC
+      ? "Downloads scale with the conversion-rate scenario you pick above and the annual audience you build from SMS, Email, and In-app reach. The reward per download and everything behind it \u2014 the split, usage rate, breakage \u2014 stay exactly what you configured on the Rate Card tab. Change anything there and this view updates with it."
+      : 'Downloads scale with the conversion-rate scenario you pick above and the annual audience you build from SMS, Email, and In-app reach. The reward per download and everything behind it \u2014 revenue share, the install/points split, breakage \u2014 stay exactly what you configured on the Per Install tab. Change anything there and this view updates with it.';
+    $('campaignBreakdownWrap').style.display = isRC ? 'none' : '';
+
+    $('rowRevenue').classList.toggle('is-active', state.campaignMetric === 'revenue');
+    $('rowPayment').classList.toggle('is-active', state.campaignMetric === 'payment');
+    $('rowRetained').classList.toggle('is-active', state.campaignMetric === 'retained');
+
+    ['metricRevenue', 'metricPayment', 'metricRetained'].forEach(id => {
+      $(id).classList.toggle('is-active', $(id).dataset.metric === state.campaignMetric);
+    });
+
+    const fillPct = state.campaignTierIdx / (CAMPAIGN_TIERS.length - 1) * 100;
+    $('campaignSlider').style.setProperty('--fill', fillPct + '%');
+    $('campaignSlider').value = state.campaignTierIdx;
+    document.querySelectorAll('.campaign-tick').forEach((btn, i) => {
+      btn.classList.toggle('is-active', i === state.campaignTierIdx);
+    });
+
+    const blurTargets = ['chBigNum', 'chDownloads', 'chMonthly', 'annTotal', 'annDownloads', 'rcTotal'];
+    blurTargets.forEach(id => {
+      const el = $(id);
+      if (el) el.classList.toggle('campaign-blur', !state.campaignRevealed);
+    });
+    $('campaignCalculateWrap').style.display = state.campaignRevealed ? 'none' : '';
+
+    renderIndustryImpact(cc);
+  }
+
+  function computeCstoreImpact(cc) {
+    const avgGallons = Math.max(0, Number(state.impactAvgGallons) || 0);
+    const fuelPrice = Math.max(0, Number(state.impactFuelPrice) || 0);
+    const gallonLiftPct = 0.08;
+    const returnTripLiftPct = 0.44;
+    const baseRedemptions = Math.max(0, cc.downloadsYearly);
+    const redemptions = baseRedemptions * (1 + returnTripLiftPct);
+    const incrementalGallonsPerFillup = avgGallons * gallonLiftPct;
+    const incrementalRevenuePerRedemption = incrementalGallonsPerFillup * fuelPrice;
+    const totalIncrementalRevenue = incrementalRevenuePerRedemption * redemptions;
+    return { avgGallons, fuelPrice, baseRedemptions, redemptions, incrementalGallonsPerFillup, incrementalRevenuePerRedemption, totalIncrementalRevenue };
+  }
+
+  function computeRestaurantImpact(cc) {
+    const avgTicket = Math.max(0, Number(state.impactAvgTicket) || 0);
+    const lapsedEngagementPct = 0.54;
+    const baseDownloads = Math.max(0, cc.downloadsYearly);
+    const reengaged = baseDownloads * lapsedEngagementPct;
+    const totalIncrementalRevenue = reengaged * avgTicket;
+    return { avgTicket, baseDownloads, reengaged, totalIncrementalRevenue };
+  }
+
+  function computeRevenueUpliftImpact(orgRevenueInput, upliftInput) {
+    const upliftPct = Math.max(0, Number(upliftInput) || 0) / 100;
+    const baseRevenue = Math.max(0, Number(orgRevenueInput) || 0);
+    const incrementalRevenue = baseRevenue * upliftPct;
+    return { upliftPct, baseRevenue, incrementalRevenue };
+  }
+
+  const INDUSTRY_LABELS = { cstore: 'C-Store', restaurant: 'Restaurant', fintech: 'Fintech', retail: 'Retail' };
+
+  function renderIndustryImpact(cc) {
+    const cstorePanel = $('industryImpactCstore');
+    const restaurantPanel = $('industryImpactRestaurant');
+    const fintechPanel = $('industryImpactFintech');
+    const retailPanel = $('industryImpactRetail');
+    const comingSoonPanel = $('industryComingSoon');
+
+    $('industryDdLabel').textContent = state.industry ? INDUSTRY_LABELS[state.industry] : 'Further Impact by Industry';
+    document.querySelectorAll('.industry-dd-item').forEach(item => {
+      item.classList.toggle('is-active', item.dataset.value === state.industry);
+    });
+
+    cstorePanel.style.display = 'none';
+    restaurantPanel.style.display = 'none';
+    fintechPanel.style.display = 'none';
+    retailPanel.style.display = 'none';
+    comingSoonPanel.style.display = 'none';
+
+    if (state.industry === 'cstore') {
+      cstorePanel.style.display = '';
+      const ic = computeCstoreImpact(cc);
+      $('impactGallonsVal').textContent = ic.avgGallons + ' gal';
+      $('impactPriceVal').textContent = usd(ic.fuelPrice);
+      $('impactRevenueOut').textContent = usdWhole(ic.totalIncrementalRevenue);
+      $('impactRevenueSub').textContent = 'across ' + Math.round(ic.redemptions).toLocaleString() + ' redemption visits a year, +' + ic.incrementalGallonsPerFillup.toFixed(2) + ' gal each';
+      $('impactBaseRedemptions').textContent = Math.round(ic.baseRedemptions).toLocaleString();
+      $('impactRedemptions').textContent = Math.round(ic.redemptions).toLocaleString();
+      $('impactGalPerFillup').textContent = ic.incrementalGallonsPerFillup.toFixed(2);
+      $('impactPriceEcho').textContent = usd(ic.fuelPrice);
+      $('impactRevPerRedemption').textContent = usd(ic.incrementalRevenuePerRedemption);
+      $('impactRedemptionsEcho').textContent = Math.round(ic.redemptions).toLocaleString();
+      $('impactRevTotal').textContent = usdWhole(ic.totalIncrementalRevenue);
+      $('cstoreTPV').textContent = usdWhole(cc.yearlyRetained + ic.totalIncrementalRevenue);
+      $('cstoreTPVSub').textContent = usdWhole(cc.yearlyRetained) + ' retained upside + ' + usdWhole(ic.totalIncrementalRevenue) + ' incremental fuel revenue';
+    } else if (state.industry === 'restaurant') {
+      restaurantPanel.style.display = '';
+      const rc = computeRestaurantImpact(cc);
+      $('impactTicketVal').textContent = usd(rc.avgTicket);
+      $('restRevenueOut').textContent = usdWhole(rc.totalIncrementalRevenue);
+      $('restRevenueSub').textContent = 'across ' + Math.round(rc.reengaged).toLocaleString() + ' re-engaged visits a year, +' + usd(rc.avgTicket) + ' each';
+      $('restBaseDownloads').textContent = Math.round(rc.baseDownloads).toLocaleString();
+      $('restReengaged').textContent = Math.round(rc.reengaged).toLocaleString();
+      $('restTicketEcho').textContent = usd(rc.avgTicket);
+      $('restRevTotal').textContent = usdWhole(rc.totalIncrementalRevenue);
+      $('restTPV').textContent = usdWhole(cc.yearlyRetained + rc.totalIncrementalRevenue);
+      $('restTPVSub').textContent = usdWhole(cc.yearlyRetained) + ' retained upside + ' + usdWhole(rc.totalIncrementalRevenue) + ' incremental revenue';
+    } else if (state.industry === 'fintech') {
+      fintechPanel.style.display = '';
+      const fc = computeRevenueUpliftImpact(state.impactOrgRevenueFintech, state.impactUpliftFintech);
+      $('fintechOrgRevenueVal').textContent = usdWhole(fc.baseRevenue);
+      $('fintechUpliftVal').textContent = Math.round(fc.upliftPct * 100) + '%';
+      $('fintechRevenueOut').textContent = usdWhole(fc.incrementalRevenue);
+      $('fintechRevenueSub').textContent = 'a ' + Math.round(fc.upliftPct * 100) + '% lift on ' + usdWhole(fc.baseRevenue) + ' in total annual revenue';
+      $('fintechBaseRevenue').textContent = usdWhole(fc.baseRevenue);
+      $('fintechUpliftEcho').textContent = Math.round(fc.upliftPct * 100) + '%';
+      $('fintechRevTotal').textContent = usdWhole(fc.incrementalRevenue);
+      $('fintechTPV').textContent = usdWhole(cc.yearlyRetained + fc.incrementalRevenue);
+      $('fintechTPVSub').textContent = usdWhole(cc.yearlyRetained) + ' retained upside + ' + usdWhole(fc.incrementalRevenue) + ' incremental revenue';
+    } else if (state.industry === 'retail') {
+      retailPanel.style.display = '';
+      const rtc = computeRevenueUpliftImpact(state.impactOrgRevenueRetail, state.impactUpliftRetail);
+      $('retailOrgRevenueVal').textContent = usdWhole(rtc.baseRevenue);
+      $('retailUpliftVal').textContent = Math.round(rtc.upliftPct * 100) + '%';
+      $('retailRevenueOut').textContent = usdWhole(rtc.incrementalRevenue);
+      $('retailRevenueSub').textContent = 'a ' + Math.round(rtc.upliftPct * 100) + '% lift on ' + usdWhole(rtc.baseRevenue) + ' in total annual revenue';
+      $('retailBaseRevenue').textContent = usdWhole(rtc.baseRevenue);
+      $('retailUpliftEcho').textContent = Math.round(rtc.upliftPct * 100) + '%';
+      $('retailRevTotal').textContent = usdWhole(rtc.incrementalRevenue);
+      $('retailTPV').textContent = usdWhole(cc.yearlyRetained + rtc.incrementalRevenue);
+      $('retailTPVSub').textContent = usdWhole(cc.yearlyRetained) + ' retained upside + ' + usdWhole(rtc.incrementalRevenue) + ' incremental revenue';
+    }
+  }
+
+  // Rounds each value independently (to the nearest multiple of `step`), then trims
+  // ticks from whichever stages were rounded up the most until the sum no longer
+  // exceeds the target. Never fills upward, so an intentional under-allocation is
+  // left alone. step=1 for whole points; step=0.1 for fractional fuel cents.
+  function roundWithOverflowCap(exactValues, targetTotal, step) {
+    step = step || 1;
+    const ticks = exactValues.map(v => Math.max(0, Math.round(v / step)));
+    const targetTicks = Math.max(0, Math.round(targetTotal / step));
+    let sum = ticks.reduce((a, b) => a + b, 0);
+    if (sum > targetTicks) {
+      let excess = sum - targetTicks;
+      const order = ticks.map((_, i) => i)
+        .sort((a, b) => (ticks[b] - exactValues[b] / step) - (ticks[a] - exactValues[a] / step));
+      let guard = 0;
+      while (excess > 0 && guard < order.length * 1000) {
+        const i = order[guard % order.length];
+        if (ticks[i] > 0) { ticks[i] -= 1; excess -= 1; }
+        guard++;
+      }
+    }
+    return ticks.map(t => Math.round(t * step * 1e6) / 1e6);
+  }
+
+  // Floors each value (in tick space), then hands out the remaining ticks one at a
+  // time to whichever stages had the largest leftover fraction, so the sum lands on
+  // target exactly (largest-remainder method). step=1 for whole points; step=0.1 for
+  // fractional fuel cents.
+  function distributeExactMatch(rawPoints, targetTotal, step) {
+    step = step || 1;
+    const total = rawPoints.reduce((a, b) => a + b, 0);
+    const targetTicks = Math.max(0, Math.round(targetTotal / step));
+    if (total <= 0 || targetTicks <= 0) return rawPoints.map(() => 0);
+    const ratio = (targetTicks * step) / total;
+    const exact = rawPoints.map(p => (p * ratio) / step);
+    const ticks = exact.map(v => Math.max(0, Math.floor(v)));
+    let remaining = targetTicks - ticks.reduce((a, b) => a + b, 0);
+    const order = exact.map((v, i) => ({ i, rem: v - Math.floor(v) })).sort((a, b) => b.rem - a.rem);
+    let idx = 0;
+    while (remaining > 0 && idx < order.length) {
+      ticks[order[idx].i] += 1;
+      remaining -= 1;
+      idx += 1;
+    }
+    return ticks.map(t => Math.round(t * step * 1e6) / 1e6);
+  }
+
+  function rescaleStagesToPoolChange(oldTotal, newTotal) {
+    if (oldTotal <= 0 || newTotal <= 0) return;
+    const ratio = newTotal / oldTotal;
+    if (Math.abs(ratio - 1) < 1e-9) return;
+    const stages = activeStages();
+    const exact = stages.map(s => s.points * ratio);
+    const rounded = roundWithOverflowCap(exact, newTotal, unitStep());
+    stages.forEach((s, i) => { s.points = rounded[i]; });
+  }
+
+  function applyPoolChange(mutate) {
+    const oldTotal = compute(state).totalPoints;
+    mutate();
+    const newTotal = compute(state).totalPoints;
+    rescaleStagesToPoolChange(oldTotal, newTotal);
+    state.campaignRevealed = false;
+    render(true);
+  }
+
+  function bindTopControls() {
+    $('dauFetchBtn').addEventListener('click', async () => {
+      const appName = $('dauAppNameInput').value.trim();
+      const statusEl = $('dauFetchStatus');
+      if (!appName) {
+        statusEl.style.display = '';
+        statusEl.className = 'dau-fetch-status error';
+        statusEl.textContent = 'Type an app name first.';
+        return;
+      }
+      statusEl.style.display = '';
+      statusEl.className = 'dau-fetch-status loading';
+      statusEl.textContent = 'Looking up ' + appName + '\u2026';
+      $('dauFetchBtn').disabled = true;
+      try {
+        const res = await fetch('/.netlify/functions/sensortower-dau?app=' + encodeURIComponent(appName));
+        const data = await res.json().catch(() => ({}));
+        if (!res.ok) throw new Error(data.error || ('Request failed (' + res.status + ')'));
+        if (!data.dau) throw new Error('No DAU data found for that app.');
+        state.dau = Math.round(data.dau);
+        state.campaignRevealed = false;
+        $('dau').value = state.dau;
+        statusEl.className = 'dau-fetch-status success';
+        statusEl.textContent = 'Found ' + (data.appName || appName) + ' \u2014 ' + Math.round(data.dau).toLocaleString() + ' DAU';
+        render(false);
+      } catch (err) {
+        statusEl.className = 'dau-fetch-status error';
+        statusEl.textContent = "Couldn't fetch that (" + err.message + "). You can still type DAU in manually above.";
+      } finally {
+        $('dauFetchBtn').disabled = false;
+      }
+    });
+    $('landingRevShare').addEventListener('click', () => {
+      $('calculatorApp').style.display = '';
+      $('landingCover').style.display = 'none';
+      setView('splits');
+    });
+    $('landingRateCard').addEventListener('click', () => {
+      state.paymentModel = 'ratecard';
+      resetForModelEntry('ratecard');
+      $('calculatorApp').style.display = '';
+      $('landingCover').style.display = 'none';
+      setView('perInstall');
+    });
+    ['cpi', 'cpiCampaign', 'cpiInstall'].forEach(id => {
+      $(id).addEventListener('input', e => {
+        applyPoolChange(() => { state.cpi = Math.max(0, Number(e.target.value) || 0); });
+      });
+    });
+    ['revSharePct', 'revShareCampaign', 'revShareInstall'].forEach(id => {
+      $(id).addEventListener('input', e => {
+        applyPoolChange(() => { state.revSharePct = Math.max(0, Math.min(100, Number(e.target.value) || 0)); });
+      });
+    });
+    ['pctToInstaller', 'pctInstallerCampaign', 'pctInstallerInstall', 'pctInstallerRC'].forEach(id => {
+      $(id).addEventListener('input', e => {
+        applyPoolChange(() => { state.pctToInstaller = Math.max(0, Math.min(100, Number(e.target.value) || 0)); });
+      });
+    });
+    ['rewardUsagePct', 'rewardUsagePctCampaign'].forEach(id => {
+      $(id).addEventListener('input', e => {
+        state.rewardUsagePct = Math.max(0, Math.min(100, Number(e.target.value) || 0));
+        state.campaignRevealed = false;
+        render(false);
+      });
+    });
+    $('modelTabRevshare').addEventListener('click', () => {
+      state.paymentModel = 'revshare';
+      state.campaignRevealed = false;
+      resetForModelEntry('revshare');
+      render(true);
+    });
+    $('modelTabRatecard').addEventListener('click', () => {
+      state.paymentModel = 'ratecard';
+      state.campaignRevealed = false;
+      resetForModelEntry('ratecard');
+      if (state.view === 'splits') { setView('perInstall'); } else { render(true); }
+    });
+    $('modelTabRevshare2').addEventListener('click', () => {
+      state.paymentModel = 'revshare';
+      state.campaignRevealed = false;
+      resetForModelEntry('revshare');
+      render(true);
+    });
+    $('modelTabRatecard2').addEventListener('click', () => {
+      state.paymentModel = 'ratecard';
+      state.campaignRevealed = false;
+      resetForModelEntry('ratecard');
+      if (state.view === 'splits') { setView('perInstall'); } else { render(true); }
+    });
+    $('loyaltyOptionsToggle2').addEventListener('click', () => {
+      const isOpen = $('loyaltyOptionsToggle2').getAttribute('aria-expanded') === 'true';
+      const willOpen = !isOpen;
+      $('loyaltyOptionsToggle2').setAttribute('aria-expanded', String(willOpen));
+      $('modelToggleWrap2').style.display = willOpen ? '' : 'none';
+      $('loyaltyOptionsIcon2').textContent = willOpen ? '\u2212' : '+';
+    });
+    ['eqDollars', 'eqDollarsInline'].forEach(id => {
+      $(id).addEventListener('input', e => {
+        applyPoolChange(() => { state.eqDollars = Math.max(0.00001, Number(e.target.value) || 0.00001); });
+      });
+    });
+    ['eqPoints', 'eqPointsInline'].forEach(id => {
+      $(id).addEventListener('input', e => {
+        applyPoolChange(() => { state.eqPoints = Math.max(0.00001, Number(e.target.value) || 0.00001); });
+      });
+    });
+    ['avgGallons', 'avgGallonsInline'].forEach(id => {
+      $(id).addEventListener('input', e => {
+        applyPoolChange(() => { state.avgGallons = Math.max(1, Math.round(Number(e.target.value) || 1)); });
+      });
+    });
+    const rewardTypeBoxes = { points: $('rewardTypePoints'), fuel: $('rewardTypeFuel'), moneyback: $('rewardTypeMoney') };
+    Object.entries(rewardTypeBoxes).forEach(([type, box]) => {
+      box.addEventListener('change', e => {
+        if (!e.target.checked) { e.target.checked = true; return; }
+        state.rewardType = type;
+        Object.entries(rewardTypeBoxes).forEach(([t, b]) => { if (t !== type) b.checked = false; });
+        state.campaignRevealed = false;
+        render(true);
+      });
+    });
+
+    $('addStage').addEventListener('click', () => {
+      activeStages().push({ name: 'New Milestone', points: 0 });
+      state.campaignRevealed = false;
+      render(true);
+    });
+    $('normalizeBtn').addEventListener('click', () => {
+      const c = compute(state);
+      const stages = activeStages();
+      const currentPoints = stages.map(s => Number(s.points || 0));
+      if (currentPoints.reduce((a, b) => a + b, 0) > 0 && c.totalPoints > 0) {
+        const matched = distributeExactMatch(currentPoints, c.totalPoints, unitStep());
+        stages.forEach((s, i) => { s.points = matched[i]; });
+        state.campaignRevealed = false;
+        render(true);
+      }
+    });
+    $('buildExampleBtn').addEventListener('click', () => {
+      const c = compute(state);
+      if (c.totalPoints <= 0) return;
+      const template = [65, 60, 60, 60];
+      const names = ['Game Install', 'Milestone 1', 'Milestone 2', 'Milestone 3'];
+      const matched = distributeExactMatch(template, c.totalPoints, unitStep());
+      const newStages = names.map((name, i) => ({ name, points: matched[i] }));
+      if (state.rewardType === 'fuel') {
+        state.fuelStages = newStages;
+        state.fuelFurthestReachedIndex = newStages.length - 1;
+      } else if (state.rewardType === 'moneyback') {
+        state.moneyStages = newStages;
+        state.moneyFurthestReachedIndex = newStages.length - 1;
+      } else {
+        state.stages = newStages;
+        state.furthestReachedIndex = newStages.length - 1;
+      }
+      state.campaignRevealed = false;
+      render(true);
+    });
+
+    $('preset50').addEventListener('click', () => { loadPreset(PRESET_50, '50'); });
+    $('preset100').addEventListener('click', () => { loadPreset(PRESET_100, '100'); });
+    $('resetBtn').addEventListener('click', () => { loadPreset(PRESET_50, '50'); });
+    $('preset50Splits').addEventListener('click', () => { loadPreset(PRESET_50, '50'); });
+    $('preset100Splits').addEventListener('click', () => { loadPreset(PRESET_100, '100'); });
+    $('resetBtnSplits').addEventListener('click', () => { loadPreset(PRESET_50, '50'); });
+
+    $('viewTabSplits').addEventListener('click', () => setView(state.paymentModel === 'ratecard' ? 'perInstall' : 'splits'));
+    $('viewTabInstall').addEventListener('click', () => setView('perInstall'));
+    $('viewTabCampaign').addEventListener('click', () => setView('campaign'));
+    $('chRewardChip').addEventListener('click', () => setView('perInstall'));
+    $('brandLockup').addEventListener('click', () => setView('campaign'));
+    $('splitsDiveLink').addEventListener('click', () => setView('campaign'));
+    $('rateCardDiveLink').addEventListener('click', () => setView('campaign'));
+    $('campaignBreakdownLink').addEventListener('click', () => setView('perInstall'));
+    $('campaignCalculateBtn').addEventListener('click', () => {
+      state.campaignRevealed = true;
+      render(false);
+    });
+
+    ['metricRevenue', 'metricPayment', 'metricRetained'].forEach(id => {
+      $(id).addEventListener('click', e => {
+        state.campaignMetric = e.target.dataset.metric;
+        render(false);
+      });
+    });
+
+    CAMPAIGN_FIELDS.forEach(field => {
+      $(field).addEventListener('input', e => {
+        state[field] = Math.max(0, Number(e.target.value) || 0);
+        state.campaignRevealed = false;
+        render(false);
+      });
+    });
+    $('customChannelName').addEventListener('input', e => {
+      state.customChannelName = e.target.value;
+      state.campaignRevealed = false;
+      render(false);
+    });
+    $('audienceExpandToggle').addEventListener('click', () => {
+      state.audienceExpanded = !state.audienceExpanded;
+      state.campaignRevealed = false;
+      render(false);
+    });
+    $('mathToggle').addEventListener('click', () => {
+      const isOpen = $('mathToggle').getAttribute('aria-expanded') === 'true';
+      const willOpen = !isOpen;
+      $('mathToggle').setAttribute('aria-expanded', String(willOpen));
+      $('mathDetails').style.display = willOpen ? '' : 'none';
+      $('mathToggleIcon').textContent = willOpen ? '\u2212' : '+';
+      $('mathToggleText').textContent = willOpen ? 'Collapse' : 'Expand';
+    });
+    $('loyaltyOptionsToggle').addEventListener('click', () => {
+      const isOpen = $('loyaltyOptionsToggle').getAttribute('aria-expanded') === 'true';
+      const willOpen = !isOpen;
+      $('loyaltyOptionsToggle').setAttribute('aria-expanded', String(willOpen));
+      $('modelToggleWrap').style.display = willOpen ? '' : 'none';
+      $('loyaltyOptionsIcon').textContent = willOpen ? '\u2212' : '+';
+    });
+    $('impactMathToggle').addEventListener('click', () => {
+      const isOpen = $('impactMathToggle').getAttribute('aria-expanded') === 'true';
+      const willOpen = !isOpen;
+      $('impactMathToggle').setAttribute('aria-expanded', String(willOpen));
+      $('impactMathDetails').style.display = willOpen ? '' : 'none';
+      $('impactMathToggleIcon').textContent = willOpen ? '\u2212' : '+';
+      $('impactMathToggleText').textContent = willOpen ? 'Collapse' : 'Expand';
+    });
+    $('restMathToggle').addEventListener('click', () => {
+      const isOpen = $('restMathToggle').getAttribute('aria-expanded') === 'true';
+      const willOpen = !isOpen;
+      $('restMathToggle').setAttribute('aria-expanded', String(willOpen));
+      $('restMathDetails').style.display = willOpen ? '' : 'none';
+      $('restMathToggleIcon').textContent = willOpen ? '\u2212' : '+';
+      $('restMathToggleText').textContent = willOpen ? 'Collapse' : 'Expand';
+    });
+    $('fintechMathToggle').addEventListener('click', () => {
+      const isOpen = $('fintechMathToggle').getAttribute('aria-expanded') === 'true';
+      const willOpen = !isOpen;
+      $('fintechMathToggle').setAttribute('aria-expanded', String(willOpen));
+      $('fintechMathDetails').style.display = willOpen ? '' : 'none';
+      $('fintechMathToggleIcon').textContent = willOpen ? '\u2212' : '+';
+      $('fintechMathToggleText').textContent = willOpen ? 'Collapse' : 'Expand';
+    });
+    $('retailMathToggle').addEventListener('click', () => {
+      const isOpen = $('retailMathToggle').getAttribute('aria-expanded') === 'true';
+      const willOpen = !isOpen;
+      $('retailMathToggle').setAttribute('aria-expanded', String(willOpen));
+      $('retailMathDetails').style.display = willOpen ? '' : 'none';
+      $('retailMathToggleIcon').textContent = willOpen ? '\u2212' : '+';
+      $('retailMathToggleText').textContent = willOpen ? 'Collapse' : 'Expand';
+    });
+    const industryDropdown = $('industryDropdown');
+    const industryTrigger = $('industryDdTrigger');
+    const industryMenu = $('industryDdMenu');
+
+    function closeIndustryMenu() {
+      industryMenu.style.display = 'none';
+      industryTrigger.setAttribute('aria-expanded', 'false');
+    }
+    function openIndustryMenu() {
+      industryMenu.style.display = '';
+      industryTrigger.setAttribute('aria-expanded', 'true');
+    }
+
+    industryTrigger.addEventListener('click', () => {
+      const isOpen = industryTrigger.getAttribute('aria-expanded') === 'true';
+      if (isOpen) closeIndustryMenu(); else openIndustryMenu();
+    });
+    document.addEventListener('click', e => {
+      if (!industryDropdown.contains(e.target)) closeIndustryMenu();
+    });
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') closeIndustryMenu();
+    });
+
+    document.querySelectorAll('.industry-dd-item').forEach(item => {
+      item.addEventListener('click', () => {
+        state.industry = item.dataset.value;
+        closeIndustryMenu();
+        if (state.view !== 'campaign') setView('campaign');
+        render(false);
+        const targetId = state.industry === 'cstore' ? 'industryImpactCstore'
+          : state.industry === 'restaurant' ? 'industryImpactRestaurant'
+          : state.industry === 'fintech' ? 'industryImpactFintech'
+          : state.industry === 'retail' ? 'industryImpactRetail'
+          : 'industryComingSoon';
+        $(targetId).scrollIntoView({ behavior: prefersReducedMotion ? 'auto' : 'smooth', block: 'start' });
+      });
+    });
+
+    $('campaignSlider').addEventListener('input', e => {
+      state.campaignTierIdx = Number(e.target.value);
+      render(false);
+    });
+
+    const ticksContainer = $('campaignTicks');
+    CAMPAIGN_TIERS.forEach((t, i) => {
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'campaign-tick';
+      btn.textContent = t.short;
+      btn.addEventListener('click', () => {
+        state.campaignTierIdx = i;
+        render(false);
+      });
+      ticksContainer.appendChild(btn);
+    });
+  }
+
+  function setView(view) {
+    state.view = view;
+    $('viewSplits').style.display = view === 'splits' ? '' : 'none';
+    $('viewPerInstall').style.display = view === 'perInstall' ? '' : 'none';
+    $('viewCampaign').style.display = view === 'campaign' ? '' : 'none';
+    $('viewTabInstall').classList.toggle('is-active', view === 'perInstall');
+    $('viewTabCampaign').classList.toggle('is-active', view === 'campaign');
+    $('viewTabInstall').setAttribute('aria-selected', view === 'perInstall');
+    $('viewTabCampaign').setAttribute('aria-selected', view === 'campaign');
+    window.scrollTo({ top: 0, behavior: prefersReducedMotion ? 'auto' : 'smooth' });
+    render(true);
+  }
+
+  const CAMPAIGN_FIELDS = ['smsMembers', 'smsCampaigns', 'emailMembers', 'emailCampaigns', 'dau', 'audienceEstimate', 'customChannelAudience', 'impactAvgGallons', 'impactFuelPrice', 'impactAvgTicket', 'impactUpliftFintech', 'impactUpliftRetail', 'impactOrgRevenueFintech', 'impactOrgRevenueRetail'];
+
+  function loadPreset(p, key) {
+    const keepView = state.view;
+    const keepCampaignFields = {};
+    CAMPAIGN_FIELDS.forEach(f => { keepCampaignFields[f] = state[f]; });
+    const keepCustomName = state.customChannelName;
+    const keepTierIdx = state.campaignTierIdx;
+    const keepMetric = state.campaignMetric;
+    const keepRewardType = state.rewardType;
+    const keepFurthest = state.furthestReachedIndex;
+    const keepFuelFurthest = state.fuelFurthestReachedIndex;
+    const keepMoneyFurthest = state.moneyFurthestReachedIndex;
+    const keepAudienceExpanded = state.audienceExpanded;
+    const keepIndustry = state.industry;
+    const keepPaymentModel = state.paymentModel;
+    const keepUsagePct = state.rewardUsagePct;
+    state = JSON.parse(JSON.stringify(p));
+    state.view = keepView;
+    CAMPAIGN_FIELDS.forEach(f => { state[f] = keepCampaignFields[f]; });
+    state.customChannelName = keepCustomName;
+    state.campaignTierIdx = keepTierIdx;
+    state.campaignMetric = keepMetric;
+    state.rewardType = keepRewardType;
+    state.furthestReachedIndex = Math.min(keepFurthest, state.stages.length - 1);
+    state.fuelFurthestReachedIndex = Math.min(keepFuelFurthest, state.fuelStages.length - 1);
+    state.moneyFurthestReachedIndex = Math.min(keepMoneyFurthest, state.moneyStages.length - 1);
+    state.audienceExpanded = keepAudienceExpanded;
+    state.campaignRevealed = false;
+    state.industry = keepIndustry;
+    state.paymentModel = keepPaymentModel;
+    state.rewardUsagePct = keepUsagePct;
+    state.activePreset = key || '50';
+    syncInputsToState();
+    render(true);
+  }
+
+  function syncInputsToState() {
+    $('cpi').value = state.cpi;
+    $('revSharePct').value = state.revSharePct;
+    $('pctToInstaller').value = state.pctToInstaller;
+    $('eqDollars').value = state.eqDollars;
+    $('eqPoints').value = state.eqPoints;
+    $('avgGallons').value = state.avgGallons;
+    $('rewardTypePoints').checked = state.rewardType === 'points';
+    $('rewardTypeFuel').checked = state.rewardType === 'fuel';
+    $('rewardTypeMoney').checked = state.rewardType === 'moneyback';
+    CAMPAIGN_FIELDS.forEach(f => { $(f).value = state[f]; });
+    $('customChannelName').value = state.customChannelName;
+    $('preset50').classList.toggle('primary', state.activePreset === '50');
+    $('preset100').classList.toggle('primary', state.activePreset === '100');
+  }
+
+  bindTopControls();
+  render(true);
+</script>
+</body>
+</html>
