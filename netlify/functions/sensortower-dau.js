@@ -49,15 +49,15 @@ exports.handler = async (event) => {
     }
 
     const match = Array.isArray(searchBody) ? searchBody[0] : (searchBody.apps && searchBody.apps[0]);
-    if (!match || !match.unified_app_id) {
+    if (!match || !match.app_id) {
       return respond(404, {
         error: `No app found matching "${appName}".`,
         debug_raw_response: searchBody
       });
     }
 
-    const unifiedAppId = match.unified_app_id;
-    const resolvedName = match.unified_app_name || match.name || appName;
+    const unifiedAppId = match.app_id;
+    const resolvedName = match.name || match.humanized_name || appName;
 
     // Step 2: fetch active users for that app.
     // See the NOTE at the top of this file if this call errors out.
