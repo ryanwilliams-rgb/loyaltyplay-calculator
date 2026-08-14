@@ -50,7 +50,10 @@ exports.handler = async (event) => {
 
     const match = Array.isArray(searchBody) ? searchBody[0] : (searchBody.apps && searchBody.apps[0]);
     if (!match || !match.unified_app_id) {
-      return respond(404, { error: `No app found matching "${appName}".` });
+      return respond(404, {
+        error: `No app found matching "${appName}".`,
+        debug_raw_response: searchBody
+      });
     }
 
     const unifiedAppId = match.unified_app_id;
