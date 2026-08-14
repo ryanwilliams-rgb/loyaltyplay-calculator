@@ -70,7 +70,6 @@ exports.handler = async (event) => {
       date_granularity: 'monthly',
       start_date: start,
       end_date: end,
-      country: 'US',
       auth_token: authToken
     });
 
@@ -112,19 +111,15 @@ function describeError(body) {
   return (body.error || body.message || JSON.stringify(body)).toString().slice(0, 200);
 }
 
-// Sensor Tower's active-users response shape can differ by endpoint version;
-// this tries a few common layouts so small differences don't break everything.
+// Sensor Tower returns one row per country per day, with per-platform user
+// counts rather than a single "dau" field. We total the platforms for the
+// most recent date across every country present, to approximate worldwide DAU.
 function extractDau(body) {
-  if (!body) return null;
-  if (Array.isArray(body) && body.length) {
-    const row = body[body.length - 1]; // most recent period
-    if (row.dau != null) return row.dau;
-    if (row.users != null) return row.users;
-    if (row.active_users != null) return row.active_users;
-  }
-  if (body.dau != null) return body.dau;
-  if (body.data && Array.isArray(body.data) && body.data.length) {
-    return extractDau(body.data);
-  }
-  return null;
+  if (!Array.isArray(body) || body.length === 0) return null;
+  const latestDate = body.reduce((max, row) => (row.date > max ? row.date : max), body[0].date);
+  const rowsForLatestDate = body.filter(row => row.date === latestDate);
+  const total = rowsForLatestDate.reduce((sum, row) => {
+    return sum + (row.android_users || 0) + (row.ipad_users || 0) + (row.iphone_users || 0);
+  }, 0);
+  return total > 0 ? total : null;
 }
