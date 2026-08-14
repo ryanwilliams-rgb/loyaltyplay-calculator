@@ -3324,7 +3324,12 @@
     $('viewTabInstall').addEventListener('click', () => setView('perInstall'));
     $('viewTabCampaign').addEventListener('click', () => setView('campaign'));
     $('chRewardChip').addEventListener('click', () => setView('perInstall'));
-    $('brandLockup').addEventListener('click', () => setView('campaign'));
+    $('brandLockup').addEventListener('click', () => {
+      const confirmed = window.confirm("This will take you back to the deal style screen and you'll need to start over. Continue?");
+      if (confirmed) {
+        window.location.reload();
+      }
+    });
     $('splitsDiveLink').addEventListener('click', () => setView('campaign'));
     $('rateCardDiveLink').addEventListener('click', () => setView('campaign'));
     $('campaignBreakdownLink').addEventListener('click', () => setView('perInstall'));
